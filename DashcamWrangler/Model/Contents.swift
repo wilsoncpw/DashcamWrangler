@@ -14,11 +14,8 @@ import AVKit
 /// Contains an array of Journeys, each holding an array of contiguous videos
 class Contents {
     let folderURL: URL
-//    let journeys: [Journey]
     private let videos: [Video]
-    
-//    private let filenameMap: [String:Int]
-    
+        
     //---------------------------------------------------------------------------------
     /// Initialize from a folder URL.
     ///
@@ -44,42 +41,6 @@ class Contents {
             } // .sorted() { video1, video2 in video1.timestamp < video2.timestamp }
         
         self.videos = videos
-    }
-
-    
-    func getJourneysEx() async throws -> [Journey] {
-        var journeyVideos = [Video] () // a temporary array for the current journey's videos
-        var journeys = [Journey]()
-        var prevVideoEnd: Int64?
-        
-        let sortedVideos = videos.sorted() { video1, video2 in video1.timestamp < video2.timestamp }
-        for video in sortedVideos {
-            var needsNewJourney = true
-            let duration = await video.getDuration()
-
-            if let thisPrevVideoEnd = prevVideoEnd {
-                let videoTimestamp = video.timestamp
-               
-                if abs (videoTimestamp - thisPrevVideoEnd) < 5000 {
-                    needsNewJourney = false
-                }
-            }
-            
-            if needsNewJourney {
-                if journeyVideos.count > 0 {
-                    journeys.append(Journey(videos: journeyVideos))
-                    journeyVideos.removeAll()
-                }
-            }
-            journeyVideos.append(video)
-            prevVideoEnd = video.timestamp + Int64 (duration.seconds * 1000)
-            
-            if (video === sortedVideos.last) {
-                journeys.append(Journey(videos: journeyVideos))
-            }
-        }
-        
-        return journeys
     }
     
     typealias VideoTuple = (video: Video, duration: CMTime)

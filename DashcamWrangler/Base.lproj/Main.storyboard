@@ -730,18 +730,23 @@
                                             <constraint firstAttribute="bottom" secondItem="BTl-w7-pIs" secondAttribute="bottom" id="tlq-Ct-5CV"/>
                                         </constraints>
                                     </customView>
-                                    <customView fixedFrame="YES" id="R2G-Lw-fUj">
+                                    <customView id="R2G-Lw-fUj">
                                         <rect key="frame" x="246" y="0.0" width="234" height="270"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYA-dB-Xg8">
+                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="VYA-dB-Xg8">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="270"/>
-                                                <autoresizingMask key="autoresizingMask"/>
                                                 <connections>
                                                     <segue destination="HA7-nF-P9w" kind="embed" id="TaC-2j-8rs"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="VYA-dB-Xg8" firstAttribute="top" secondItem="R2G-Lw-fUj" secondAttribute="top" id="0kH-63-PDu"/>
+                                            <constraint firstItem="VYA-dB-Xg8" firstAttribute="leading" secondItem="R2G-Lw-fUj" secondAttribute="leading" id="1SP-4L-n7p"/>
+                                            <constraint firstAttribute="bottom" secondItem="VYA-dB-Xg8" secondAttribute="bottom" id="cWD-ir-Fw8"/>
+                                            <constraint firstAttribute="trailing" secondItem="VYA-dB-Xg8" secondAttribute="trailing" id="ej8-Zo-KUZ"/>
+                                        </constraints>
                                     </customView>
                                 </subviews>
                                 <holdingPriorities>
@@ -892,14 +897,28 @@
             </objects>
             <point key="canvasLocation" x="-149" y="1088"/>
         </scene>
-        <!--View Controller-->
+        <!--Video View Controller-->
         <scene sceneID="U8E-tT-szo">
             <objects>
-                <viewController id="HA7-nF-P9w" sceneMemberID="viewController">
+                <viewController id="HA7-nF-P9w" customClass="VideoViewController" customModule="DashcamWrangler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="M2u-pW-A98">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="2ex-C6-rw8" customClass="VideoView" customModule="DashcamWrangler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="450" height="256"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2ex-C6-rw8" firstAttribute="leading" secondItem="M2u-pW-A98" secondAttribute="leading" id="GOn-Um-T01"/>
+                            <constraint firstAttribute="bottom" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="44" id="Llg-BH-Fjv"/>
+                            <constraint firstItem="2ex-C6-rw8" firstAttribute="top" secondItem="M2u-pW-A98" secondAttribute="top" id="PjL-3K-bZK"/>
+                            <constraint firstAttribute="trailing" secondItem="2ex-C6-rw8" secondAttribute="trailing" id="XOA-fd-MWo"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="videoView" destination="2ex-C6-rw8" id="J8O-Sf-IdV"/>
+                    </connections>
                 </viewController>
                 <customObject id="shE-ea-e7P" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

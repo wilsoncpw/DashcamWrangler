@@ -75,5 +75,13 @@ class Video {
         let duration = try? await asset.load(.duration)
         return duration ?? CMTime.zero
     }
+    
+    func getFirstVideoTrack () async throws -> AVAssetTrack? {
+        return try await asset.loadTracks(withMediaType: .video).first
+    }
+    
+    func getFirstAudioTrack () async throws -> AVAssetTrack? {
+        return try await asset.loadTracks(withMediaType: .audio).first
+    }
 }
 

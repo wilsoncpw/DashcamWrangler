@@ -48,3 +48,12 @@ extension JourneysViewController: NSTableViewDataSource {
         return journeys? [row]
     }
 }
+
+extension JourneysViewController: NSTableViewDelegate {
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        guard let journeys = journeys, let table = notification.object as? NSTableView, case let journey = journeys [table.selectedRow] else { return }
+        
+        JourneySelectedNotify (journey: journey).post()
+    }
+}
