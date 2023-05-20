@@ -16,9 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             journeyViewController?.contents = contents
         }
     }
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -53,7 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    
     
     func openFolderAtURL (_ url: URL) -> Bool {
         

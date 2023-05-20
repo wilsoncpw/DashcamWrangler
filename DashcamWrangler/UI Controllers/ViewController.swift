@@ -8,11 +8,27 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    
+    var asr = false
+    var mergeFolderURL: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        UserDefaults.standard.removeBookmarkKey()
 
-        // Do any additional setup after loading the view.
+        UserDefaults.standard.registerDashcamWranglerDefaults()
+
+        if let url = UserDefaults.standard.outputURL {
+            asr = url.startAccessingSecurityScopedResource()
+            mergeFolderURL = url
+        }
+    }
+    
+    override func viewDidDisappear() {
+        if asr {
+            mergeFolderURL?.stopAccessingSecurityScopedResource()
+        }
     }
 
     override var representedObject: Any? {

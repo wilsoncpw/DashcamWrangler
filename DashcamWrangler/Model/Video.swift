@@ -17,7 +17,7 @@ class Video {
 //    lazy var duration = asset.duration
 //    lazy var videoTrack = asset.tracks(withMediaType: .video).first
 //    lazy var audioTrack = asset.tracks(withMediaType: .audio).first
-    lazy var timestamp: Int64 = getTimestamp ()
+    lazy var timestamp: TimeInterval = getTimestamp ()
     lazy var creationDate: Date? = getCreationDate ()
     
     init (folderURL: URL, fileName: String) {
@@ -25,9 +25,9 @@ class Video {
         self.fileName = fileName
     }
     
-    private func getTimestamp () -> Int64 {
+    private func getTimestamp () -> TimeInterval {
         if let ti = getCreationDate()?.timeIntervalSince1970 {
-            return Int64 (ti * 1000)
+            return ti
         }
         return 0
     }
@@ -36,28 +36,18 @@ class Video {
         let formatter = DateFormatter ()
         formatter.dateFormat = "yyyy_MM_dd_HHmmss";
         
-        var fName: String
-        if let i = fileName.range(of: ".", options: .backwards)?.lowerBound {
-            fName = String (fileName [..<i])
-        } else {
-            fName = fileName
-        }
-        
-        if fName.starts(with: "VID_") {
-            let i = fName.index(fName.startIndex, offsetBy: 4)
-            fName = String (fName [i...])
-            formatter.dateFormat = "yyyyMMdd_HHmmss"
-        }
-        
-        
-        
-        // nb.  a TimeInterval is an alias for Double - it contains a number of seconds and
-        // may includ a fractional part
-        if let ti = formatter.date(from: fName) {
-            return ti
-        }
         if let attrs = try? FileManager.default.attributesOfItem(atPath: folderURL.appendingPathComponent(fileName).path) {
             return attrs [.creationDate] as? Date
+        }
+        return nil
+    }
+    
+    private func getModifiedDate () -> Date? {
+        let formatter = DateFormatter ()
+        formatter.dateFormat = "yyyy_MM_dd_HHmmss";
+        
+        if let attrs = try? FileManager.default.attributesOfItem(atPath: folderURL.appendingPathComponent(fileName).path) {
+            return attrs [.modificationDate] as? Date
         }
         return nil
     }
@@ -73,7 +63,29 @@ class Video {
     
     func getDuration () async -> CMTime {
         let duration = try? await asset.load(.duration)
+
         return duration ?? CMTime.zero
+    }
+    
+    func getCreationDate () async -> TimeInterval? {
+//        if let dt = try? await asset.load (.creationDate) {
+//            let d = try? await dt.load(.dateValue)
+//            let dtx = d?.timeIntervalSince1970
+//            return dtx
+//        }
+//        return nil
+        
+        // This is quite horrid.  With the Garmin, the '.creationDate' isn't accurate at all
+        // But the file's modified date seems to be.  So we work out the creation date by
+        // subtracting the duration from the modified date.  Ugh!
+        
+        if let modifiedDate = getModifiedDate() {
+            var ts = modifiedDate.timeIntervalSince1970
+            ts -= await getDuration().seconds
+            return ts
+            
+        }
+        return nil
     }
     
     func getFirstVideoTrack () async throws -> AVAssetTrack? {

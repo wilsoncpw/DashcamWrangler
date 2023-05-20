@@ -836,17 +836,49 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jf2-7e-ewx">
+                                                                    <rect key="frame" x="323" y="65" width="75" height="32"/>
+                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zOk-8l-K7d">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="joinButtonClicked:" target="IiX-7t-ktl" id="gg9-XM-wsX"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <progressIndicator maxValue="100" doubleValue="50" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="7Nl-UV-QUB">
+                                                                    <rect key="frame" x="161" y="23" width="230" height="20"/>
+                                                                </progressIndicator>
+                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-iX-6Qv">
+                                                                    <rect key="frame" x="161" y="122" width="230" height="21"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Name" drawsBackground="YES" id="hRf-F0-b4E">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <action selector="nameTextFieldChanged:" target="IiX-7t-ktl" id="oIH-FE-Y84"/>
+                                                                    </connections>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="UiV-82-kS4" firstAttribute="leading" secondItem="N0g-rU-3Oq" secondAttribute="trailing" constant="8" symbolic="YES" id="B8s-vq-1hC"/>
                                                                 <constraint firstAttribute="bottom" secondItem="N0g-rU-3Oq" secondAttribute="bottom" constant="7" id="DbD-z0-UYZ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="N0g-rU-3Oq" secondAttribute="bottom" constant="7" id="Dfo-Ta-rsO"/>
+                                                                <constraint firstItem="7Nl-UV-QUB" firstAttribute="top" secondItem="RQq-86-cc1" secondAttribute="bottom" constant="8" symbolic="YES" id="Ey2-iI-CGz"/>
+                                                                <constraint firstItem="7Nl-UV-QUB" firstAttribute="leading" secondItem="N0g-rU-3Oq" secondAttribute="trailing" constant="8" symbolic="YES" id="Ib9-mG-Jwu"/>
                                                                 <constraint firstItem="N0g-rU-3Oq" firstAttribute="top" secondItem="IiX-7t-ktl" secondAttribute="top" constant="7" id="Kl0-lK-Pcd"/>
+                                                                <constraint firstAttribute="trailing" secondItem="7Nl-UV-QUB" secondAttribute="trailing" constant="20" symbolic="YES" id="Oms-Ht-mHs"/>
                                                                 <constraint firstItem="RQq-86-cc1" firstAttribute="top" secondItem="Zjv-of-dMH" secondAttribute="bottom" constant="8" symbolic="YES" id="PBR-IU-xDP"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RQq-86-cc1" secondAttribute="trailing" constant="20" symbolic="YES" id="Qin-P8-Rdh"/>
+                                                                <constraint firstItem="YK3-iX-6Qv" firstAttribute="trailing" secondItem="Jf2-7e-ewx" secondAttribute="trailing" id="QyD-aY-EUH"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UiV-82-kS4" secondAttribute="trailing" constant="20" symbolic="YES" id="YiP-MW-ukJ"/>
+                                                                <constraint firstItem="Jf2-7e-ewx" firstAttribute="centerY" secondItem="Zjv-of-dMH" secondAttribute="centerY" id="Ymz-8W-Wqi"/>
+                                                                <constraint firstItem="YK3-iX-6Qv" firstAttribute="leading" secondItem="UiV-82-kS4" secondAttribute="leading" id="fda-xK-Woh"/>
+                                                                <constraint firstItem="UiV-82-kS4" firstAttribute="top" secondItem="YK3-iX-6Qv" secondAttribute="bottom" constant="8" symbolic="YES" id="fv8-kI-nd9"/>
                                                                 <constraint firstItem="RQq-86-cc1" firstAttribute="leading" secondItem="Zjv-of-dMH" secondAttribute="leading" id="g35-ta-SuB"/>
                                                                 <constraint firstItem="N0g-rU-3Oq" firstAttribute="top" secondItem="IiX-7t-ktl" secondAttribute="top" constant="7" id="hEu-SG-CsH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Jf2-7e-ewx" secondAttribute="trailing" constant="20" symbolic="YES" id="iT5-db-5Nh"/>
                                                                 <constraint firstItem="N0g-rU-3Oq" firstAttribute="leading" secondItem="IiX-7t-ktl" secondAttribute="leading" constant="3" id="mza-Sw-r2O"/>
                                                                 <constraint firstItem="Zjv-of-dMH" firstAttribute="centerY" secondItem="IiX-7t-ktl" secondAttribute="centerY" id="q5d-Y1-dwh"/>
                                                                 <constraint firstItem="Zjv-of-dMH" firstAttribute="leading" secondItem="UiV-82-kS4" secondAttribute="leading" id="rgK-wC-mtc"/>
@@ -856,8 +888,11 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="durationLabel" destination="Zjv-of-dMH" id="g99-AI-hlx"/>
+                                                                <outlet property="joinButton" destination="Jf2-7e-ewx" id="4m3-9a-oYf"/>
                                                                 <outlet property="nameLabel" destination="UiV-82-kS4" id="OV0-kh-2oB"/>
+                                                                <outlet property="nameTextField" destination="YK3-iX-6Qv" id="dvg-Ig-TQV"/>
                                                                 <outlet property="noVideosLabel" destination="RQq-86-cc1" id="qfJ-gI-uzM"/>
+                                                                <outlet property="progressBar" destination="7Nl-UV-QUB" id="BaX-xV-14b"/>
                                                                 <outlet property="thumbnailImageView" destination="N0g-rU-3Oq" id="Dq2-Nb-gjk"/>
                                                             </connections>
                                                         </tableCellView>

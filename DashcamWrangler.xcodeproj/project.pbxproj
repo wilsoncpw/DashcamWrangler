@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1AA31A2A18398000C563D7 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1AA3192A18398000C563D7 /* URLExtensions.swift */; };
 		AA7711922A0123FB00CAE059 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7711912A0123FB00CAE059 /* AppDelegate.swift */; };
 		AA7711942A0123FB00CAE059 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7711932A0123FB00CAE059 /* ViewController.swift */; };
 		AA7711962A0123FB00CAE059 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7711952A0123FB00CAE059 /* Assets.xcassets */; };
@@ -21,9 +22,12 @@
 		AA7944902A029FF6006ABECC /* CGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79448F2A029FF6006ABECC /* CGExtensions.swift */; };
 		AA7944922A02A5B2006ABECC /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7944912A02A5B2006ABECC /* NotificationExtensions.swift */; };
 		AA7944942A02A785006ABECC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7944932A02A785006ABECC /* VideoViewController.swift */; };
+		AA9D6BFB2A03CA9F00A89407 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D6BFA2A03CA9F00A89407 /* UserDefaultsExtensions.swift */; };
+		AAF17CCF2A03248200F44ABE /* AVAssetExportSessionEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF17CCE2A03248200F44ABE /* AVAssetExportSessionEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA1AA3192A18398000C563D7 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		AA77118E2A0123FB00CAE059 /* DashcamWrangler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashcamWrangler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7711912A0123FB00CAE059 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA7711932A0123FB00CAE059 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		AA79448F2A029FF6006ABECC /* CGExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGExtensions.swift; sourceTree = "<group>"; };
 		AA7944912A02A5B2006ABECC /* NotificationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtensions.swift; sourceTree = "<group>"; };
 		AA7944932A02A785006ABECC /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		AA9D6BFA2A03CA9F00A89407 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		AAF17CCE2A03248200F44ABE /* AVAssetExportSessionEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetExportSessionEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 			children = (
 				AA7711A12A01256700CAE059 /* Contents.swift */,
 				AA7711A32A01259400CAE059 /* Journey.swift */,
+				AAF17CCE2A03248200F44ABE /* AVAssetExportSessionEx.swift */,
 				AA7711A52A0125D100CAE059 /* Video.swift */,
 			);
 			path = Model;
@@ -119,6 +126,8 @@
 				AA7711AB2A0163CD00CAE059 /* TimeIntervalExtensions.swift */,
 				AA79448F2A029FF6006ABECC /* CGExtensions.swift */,
 				AA7944912A02A5B2006ABECC /* NotificationExtensions.swift */,
+				AA9D6BFA2A03CA9F00A89407 /* UserDefaultsExtensions.swift */,
+				AA1AA3192A18398000C563D7 /* URLExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,10 +209,13 @@
 				AA7711AC2A0163CD00CAE059 /* TimeIntervalExtensions.swift in Sources */,
 				AA7711A22A01256700CAE059 /* Contents.swift in Sources */,
 				AA7711A82A01533900CAE059 /* JourneysViewController.swift in Sources */,
+				AA1AA31A2A18398000C563D7 /* URLExtensions.swift in Sources */,
 				AA79448E2A029EA3006ABECC /* VideoView.swift in Sources */,
 				AA7944922A02A5B2006ABECC /* NotificationExtensions.swift in Sources */,
 				AA7711922A0123FB00CAE059 /* AppDelegate.swift in Sources */,
+				AAF17CCF2A03248200F44ABE /* AVAssetExportSessionEx.swift in Sources */,
 				AA7711A62A0125D100CAE059 /* Video.swift in Sources */,
+				AA9D6BFB2A03CA9F00A89407 /* UserDefaultsExtensions.swift in Sources */,
 				AA7944902A029FF6006ABECC /* CGExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,20 @@
 import Foundation
 import AVKit
 
+protocol ProgressSource {
+    var progress: Float { get }
+    var error: Error? { get }
+}
+
+extension AVAssetExportSession: ProgressSource {
+}
+
+extension AVAssetExportSessionEx: ProgressSource {
+}
+
 protocol MergeDelegate: NSObjectProtocol {
-    func mergeDone (session: Any, error: Error?)
-    func mergeProgress (session: Any, progress: Float)
+    func mergeDone (session: ProgressSource)
+    func mergeStarted (session: ProgressSource)
 }
 
 class Journey {
@@ -19,6 +30,23 @@ class Journey {
 //        accum = CMTimeAdd (accum, video.duration)
 //    }
  //   var cachedThumbnail: CachedThumbnail?
+    
+    var name: String? {
+        get {
+            guard videos.count > 0 else { return nil }
+            let url = URL (fileURLWithPath: videos [0].fileName, relativeTo: videos [0].folderURL)
+            return url.getJourneyName()
+        }
+        
+        set {
+            guard videos.count > 0, let newValue else { return }
+            let url = URL (fileURLWithPath: videos [0].fileName, relativeTo: videos [0].folderURL)
+            do {
+                try url.setJourneyName(name: newValue)
+            } catch {
+            }
+        }
+    }
         
     init (videos: [Video]) {
         self.videos = videos
@@ -41,19 +69,27 @@ class Journey {
     }
     
     func getMergedName (resampled: Bool) -> String {
-        var st = ""
+        let ext = ".mp4"
+        let st : String
         if let firstDate = videos [0].creationDate {
             let dateFormatter = DateFormatter ()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
-            st = dateFormatter.string(from: firstDate) + " "
-        }
-        
-        if resampled {
-            st += "Resampled.mp4"
+            
+            if let name {
+                dateFormatter.dateFormat = "yyMMdd"
+                st = dateFormatter.string(from: firstDate) + " " + name
+            } else {
+                dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
+                st = dateFormatter.string(from: firstDate) + (resampled ? " Resampled" : " Joined")
+            }
         } else {
-            st += "Joined.mp4"
+            if let name {
+                st = name
+            } else {
+                st = "Unknown "
+            }
         }
-        return st
+       
+        return st + ext
     }
     
     enum VideoMergerError : Error {
@@ -103,14 +139,33 @@ class Journey {
         
         try? FileManager.default.removeItem(at: url)
 
-        let progresTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
-            delegate?.mergeProgress(session: exportSession, progress: exportSession.progress)
-        }
-        
+        await MainActor.run { delegate?.mergeStarted(session: exportSession) }
         await exportSession.export()
+        await MainActor.run { delegate?.mergeDone(session: exportSession) }
+
+    }
+    
+    func join(intoURL url: URL, delegate: MergeDelegate?) async throws {
+
+        let asset = try await getMergedComposition()
+        let exportSession = AVAssetExportSessionEx (asset: asset)
         
-        progresTimer.invalidate()
-        delegate?.mergeDone(session: exportSession, error: exportSession.error)
-          
+        let width = asset.naturalSize.width
+        let height = asset.naturalSize.height
+        
+        exportSession.outputURL = url
+        exportSession.outputFileType = AVFileType.mp4
+        exportSession.videoSettings = [
+            AVVideoCodecKey:AVVideoCodecType.hevc,
+            AVVideoWidthKey:width,
+            AVVideoHeightKey:height
+        ]
+        
+        try? FileManager.default.removeItem(at: url)
+
+        await MainActor.run { delegate?.mergeStarted(session: exportSession) }
+        await exportSession.export()
+        await MainActor.run { delegate?.mergeDone(session: exportSession) }
+
     }
 }

@@ -6,13 +6,20 @@
 //
 
 import Cocoa
+import AVFoundation
 
-class JourneyTableCellView: NSTableCellView {
+class JourneyTableCellView: NSTableCellView, MergeDelegate {
+
+ 
+    
 
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var durationLabel: NSTextField!
     @IBOutlet weak var thumbnailImageView: NSImageView!
     @IBOutlet weak var noVideosLabel: NSTextField!
+    @IBOutlet weak var joinButton: NSButton!
+    @IBOutlet weak var progressBar: NSProgressIndicator!
+    @IBOutlet weak var nameTextField: NSTextField!
     
     
     //    override func draw(_ dirtyRect: NSRect) {
@@ -21,12 +28,16 @@ class JourneyTableCellView: NSTableCellView {
 //        // Drawing code here.
 //    }
     
+    var progressTimer: Timer?
+    var progressEnding = false
+    
     override var objectValue: Any? {
         didSet {
             guard let journey = objectValue as? Journey else { return }
             
             nameLabel.stringValue = journey.getMergedName(resampled: false)
             noVideosLabel.stringValue = "\(journey.videos.count) \(journey.videos.count == 1 ? "clip" : "clips")"
+            nameTextField.stringValue = journey.name ?? ""
             
             Task.init {
                 do {
@@ -49,6 +60,60 @@ class JourneyTableCellView: NSTableCellView {
                 }
             }
         }
+    }
+    
+    @IBAction func joinButtonClicked(_ sender: Any) {
+        guard let journey = objectValue as? Journey else { return }
+
+        let url = UserDefaults.standard.outputURL
+        let name = journey.getMergedName(resampled: false)
+        let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
+        let fileUrl = fileUrlx.resolvingSymlinksInPath()
+        
+        try? FileManager.default.removeItem(at: fileUrl)
+        
+        Task.init {
+            do {
+  //              try await journey.merge(intoURL: fileUrl, withPreset: /*AVAssetExportPresetPassthrough*/ AVAssetExportPresetHEVC1920x1080, delegate: self)
+                try await journey.join(intoURL: fileUrl, delegate: self)
+                print ("Done")
+            } catch {
+            }
+        }
+    }
+    
+    func mergeStarted(session: ProgressSource) {
+        progressBar.doubleValue = 0
+        progressBar.isHidden = false
+        progressEnding = false
+        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [self] timer in
+            if (progressEnding) {
+                progressTimer?.invalidate()
+                progressBar.isHidden = true
+                return
+            }
+            progressBar.doubleValue = Double (session.progress) * 100
+        }
+    }
+    
+    func mergeDone(session: ProgressSource) {
+        progressBar.doubleValue = 100
+        progressEnding = true
+       
+    }
+    
+    @IBAction func nameTextFieldChanged(_ sender: Any) {
+        guard let journey = objectValue as? Journey else { return }
+        
+        let st: String?
+        if !nameTextField.stringValue.isEmpty {
+            st = nameTextField.stringValue
+        } else {
+            st = nil
+        }
+        journey.name = st
+        
+        nameLabel.stringValue = journey.getMergedName(resampled: false)
     }
     
 }

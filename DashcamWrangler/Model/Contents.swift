@@ -43,7 +43,7 @@ class Contents {
         self.videos = videos
     }
     
-    typealias VideoTuple = (video: Video, duration: CMTime)
+    typealias VideoTuple = (video: Video, duration: CMTime, timestamp: TimeInterval?)
 
     func getJourneys() async throws -> [Journey] {
         
@@ -51,21 +51,26 @@ class Contents {
         await withTaskGroup(of: VideoTuple.self) { group in
             
             // Add a task for each video to get its duration
-            for video in videos { group.addTask { await (video, video.getDuration())} }
+            for video in videos { group.addTask { await (video, video.getDuration(), video.getCreationDate())} }
             
             // Get all the video/duration tuples.  They won't necessarily be in the original order - so sort them.
             let tuples = await group.reduce(into: [VideoTuple]()) { accum, videoTuple in accum.append(videoTuple)}.sorted() {t1, t2 in t1.video.timestamp < t2.video.timestamp}
             
             var currentJourneyVideos = [Video] ()  // An array for the current journey's videos
-            var prevVideoEnd: Int64?        // End of the previous video in milliseconds since 1970
+            var prevVideoEnd: TimeInterval? = nil       // End of the previous video in milliseconds since 1970
             
             return tuples.reduce(into: [Journey]()) { accum, videoTuple in
 
                 let video = videoTuple.video
-                let duration = videoTuple.duration
-                      
-                if let thisPrevVideoEnd = prevVideoEnd, abs (video.timestamp - thisPrevVideoEnd) < 5000 {} else {
-                    if currentJourneyVideos.count > 0 {
+                let durationSeconds = videoTuple.duration.seconds
+                let timestamp = videoTuple.timestamp ?? video.timestamp
+                
+                let dt = Date (timeIntervalSince1970: timestamp)
+                print (dt)
+            
+                if let thisPrevVideoEnd = prevVideoEnd {
+                    let diff = abs (timestamp - thisPrevVideoEnd)
+                    if diff > 5 && currentJourneyVideos.count > 0 {
                         // There were some previous videos before this non-contiguous one.  So make a journey of them...
                         accum.append(Journey (videos: currentJourneyVideos))
                         currentJourneyVideos = [Video]()
@@ -73,7 +78,7 @@ class Contents {
                 }
                 
                 currentJourneyVideos.append(video)
-                prevVideoEnd = video.timestamp + Int64 (duration.seconds * 1000)
+                prevVideoEnd = timestamp + durationSeconds
                 
                 if video === tuples.last?.video {
                     accum.append(Journey (videos: currentJourneyVideos))
