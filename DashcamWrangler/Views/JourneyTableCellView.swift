@@ -38,6 +38,7 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
             nameLabel.stringValue = journey.getMergedName(resampled: false)
             noVideosLabel.stringValue = "\(journey.videos.count) \(journey.videos.count == 1 ? "clip" : "clips")"
             nameTextField.stringValue = journey.name ?? ""
+            progressBar.isHidden = true
             
             Task.init {
                 do {
@@ -62,23 +63,32 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
         }
     }
     
+   
     @IBAction func joinButtonClicked(_ sender: Any) {
+       
         guard let journey = objectValue as? Journey else { return }
 
-        let url = UserDefaults.standard.outputURL
-        let name = journey.getMergedName(resampled: false)
-        let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
-        let fileUrl = fileUrlx.resolvingSymlinksInPath()
-        
-        try? FileManager.default.removeItem(at: fileUrl)
-        
-        Task.init {
-            do {
-  //              try await journey.merge(intoURL: fileUrl, withPreset: /*AVAssetExportPresetPassthrough*/ AVAssetExportPresetHEVC1920x1080, delegate: self)
-                try await journey.join(intoURL: fileUrl, delegate: self)
-                print ("Done")
-            } catch {
+        if journey.task == nil {
+            joinButton.title = "Cancel merge"
+            let url = UserDefaults.standard.outputURL
+            let name = journey.getMergedName(resampled: false)
+            let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
+            let fileUrl = fileUrlx.resolvingSymlinksInPath()
+            
+            
+            journey.task = Task.init {
+                do {
+                    //              try await journey.merge(intoURL: fileUrl, withPreset: /*AVAssetExportPresetPassthrough*/ AVAssetExportPresetHEVC1920x1080, delegate: self)
+                    try await journey.join(intoURL: fileUrl, delegate: self)
+                    journey.task = nil
+                    await MainActor.run {
+                        joinButton.title = "Merge"
+                    }
+                } catch {
+                }
             }
+        } else {
+            journey.task!.cancel()
         }
     }
     

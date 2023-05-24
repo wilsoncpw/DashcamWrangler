@@ -16,6 +16,9 @@ class JourneysViewController: NSViewController {
         if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
             appDelegate.journeyViewController = self
         }
+        
+        let _ = NextJourneyNotify.observe { self.selectNext() }
+        let _ = PrevJourneyNotify.observe { self.selectPrev() }
     }
     
     var journeys: [Journey]? {
@@ -37,6 +40,21 @@ class JourneysViewController: NSViewController {
             }
         }
     }
+    
+    private func selectNext () {
+        if journeysTableView.selectedRow >= journeysTableView.numberOfRows - 1 { return }
+        let newRow = journeysTableView.selectedRow + 1
+        journeysTableView.selectRowIndexes([newRow], byExtendingSelection: false)
+        journeysTableView.scrollRowToVisible(newRow)
+        
+    }
+    
+    private func selectPrev () {
+        if journeysTableView.selectedRow == 0 { return }
+        let newRow = journeysTableView.selectedRow - 1
+        journeysTableView.selectRowIndexes([newRow], byExtendingSelection: false)
+        journeysTableView.scrollRowToVisible(newRow)
+    }
 }
 
 extension JourneysViewController: NSTableViewDataSource {
@@ -54,6 +72,6 @@ extension JourneysViewController: NSTableViewDelegate {
         
         guard let journeys = journeys, let table = notification.object as? NSTableView, case let journey = journeys [table.selectedRow] else { return }
         
-        JourneySelectedNotify (journey: journey).post()
+        JourneySelectedNotify (journey: journey, isFirst: table.selectedRow == 0, isLast: table.selectedRow == table.numberOfRows-1).post()
     }
 }

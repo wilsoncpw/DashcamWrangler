@@ -139,6 +139,8 @@ class VideoView: NSView, CALayerDelegate {
         
         videoPlayer.seek (to: newPos)
         updateLine()
+        VideoTickNotify().post()
+        tickCount = 0
     }
     
  
@@ -253,6 +255,16 @@ class VideoView: NSView, CALayerDelegate {
         
     }
     
+    private var tickCount = 0
+    private func handleTick () {
+        updateLine()
+        tickCount += 1
+        if tickCount == 10 {
+            tickCount = 0
+            VideoTickNotify().post()
+        }
+    }
+    
     private func readyStatuschanged (isReady: Bool) {
         trackingAreas.forEach { trackingArea in
             removeTrackingArea(trackingArea)
@@ -260,10 +272,11 @@ class VideoView: NSView, CALayerDelegate {
         
         if isReady {
             timeObserver = videoPlayer.addPeriodicTimeObserver(forInterval: CMTime (seconds: 0.1, preferredTimescale: 600), queue: nil) {[weak self] time in
-                self?.updateLine()
+                self?.handleTick()
             }
             
             addOurTrackingArea()
+            tickCount = 0
         }
         updateLine()
     }

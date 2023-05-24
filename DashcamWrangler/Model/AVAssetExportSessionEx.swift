@@ -33,13 +33,15 @@ class AVAssetExportSessionEx {
     public var framerate : Float?
     
     private  let asset: AVAsset
+    private let journey: Journey
     private (set) var error: Error?
     dynamic private (set) var progress : Float = 0
 
     
     
-    init (asset: AVAsset) {
+    init (asset: AVAsset, journey: Journey) {
         self.asset = asset
+        self.journey = journey
     }
     
     public func export() async {
@@ -242,7 +244,7 @@ class AVAssetExportSessionEx {
     
     private func encodeReadySamplesFromOutput (duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, output: AVAssetReaderOutput, input: AVAssetWriterInput) -> Bool {
         while input.isReadyForMoreMediaData {
-            guard let sampleBuffer = output.copyNextSampleBuffer() else {
+            guard let sampleBuffer = output.copyNextSampleBuffer(), !(journey.task?.isCancelled ?? true) else {
                 input.markAsFinished()
                 return false
             }

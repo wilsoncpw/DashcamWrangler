@@ -33,14 +33,41 @@ extension DeviceNotifiable {
     }
 }
 
+struct JourneySelection {
+    let journey: Journey
+    let isFirst: Bool
+    let isLast: Bool
+}
+
 struct JourneySelectedNotify: DeviceNotifiable {
     static let name = NSNotification.Name ("journeySelected")
-    typealias T = Journey
+    typealias T = JourneySelection
     let payload: T
     
-    init (journey: Journey) {
-        payload = journey
+    init (journey: Journey, isFirst: Bool, isLast: Bool) {
+        payload = JourneySelection (journey: journey, isFirst: isFirst, isLast: isLast)
     }
+}
+
+struct NextJourneyNotify: DeviceNotifiable {
+    static let name = NSNotification.Name ("nextJourney")
+    typealias T = Void
+    let payload: T
+    init () {}
+}
+
+struct PrevJourneyNotify: DeviceNotifiable {
+    static let name = NSNotification.Name ("prevJourney")
+    typealias T = Void
+    let payload: T
+    init () {}
+}
+
+struct VideoTickNotify: DeviceNotifiable {
+    static let name = NSNotification.Name ("videoTick")
+    typealias T = Void
+    let payload: T
+    init () {}
 }
 
 struct EnvironmentChangedNotify: DeviceNotifiable {
@@ -49,4 +76,5 @@ struct EnvironmentChangedNotify: DeviceNotifiable {
     let payload: T
     init () {}
 }
+
 

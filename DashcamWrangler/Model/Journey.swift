@@ -26,11 +26,9 @@ protocol MergeDelegate: NSObjectProtocol {
 
 class Journey {
     let videos : [Video]
-//    lazy var duration:CMTime = videos.reduce(into: CMTime.zero) {accum, video in
-//        accum = CMTimeAdd (accum, video.duration)
-//    }
- //   var cachedThumbnail: CachedThumbnail?
-    
+
+    var task: Task<(), Never>?
+
     var name: String? {
         get {
             guard videos.count > 0 else { return nil }
@@ -148,7 +146,7 @@ class Journey {
     func join(intoURL url: URL, delegate: MergeDelegate?) async throws {
 
         let asset = try await getMergedComposition()
-        let exportSession = AVAssetExportSessionEx (asset: asset)
+        let exportSession = AVAssetExportSessionEx (asset: asset, journey: self)
         
         let width = asset.naturalSize.width
         let height = asset.naturalSize.height

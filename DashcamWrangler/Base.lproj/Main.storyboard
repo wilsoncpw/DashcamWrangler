@@ -837,8 +837,8 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jf2-7e-ewx">
-                                                                    <rect key="frame" x="323" y="65" width="75" height="32"/>
-                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zOk-8l-K7d">
+                                                                    <rect key="frame" x="325" y="65" width="73" height="32"/>
+                                                                    <buttonCell key="cell" type="push" title="Merge" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zOk-8l-K7d">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
@@ -883,6 +883,7 @@
                                                                 <constraint firstItem="Zjv-of-dMH" firstAttribute="centerY" secondItem="IiX-7t-ktl" secondAttribute="centerY" id="q5d-Y1-dwh"/>
                                                                 <constraint firstItem="Zjv-of-dMH" firstAttribute="leading" secondItem="UiV-82-kS4" secondAttribute="leading" id="rgK-wC-mtc"/>
                                                                 <constraint firstItem="N0g-rU-3Oq" firstAttribute="leading" secondItem="IiX-7t-ktl" secondAttribute="leading" constant="3" id="slZ-rm-vZG"/>
+                                                                <constraint firstItem="Jf2-7e-ewx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zjv-of-dMH" secondAttribute="trailing" constant="8" symbolic="YES" id="tbS-RT-7b5"/>
                                                                 <constraint firstItem="Zjv-of-dMH" firstAttribute="top" secondItem="UiV-82-kS4" secondAttribute="bottom" constant="8" symbolic="YES" id="wkK-4y-0X4"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zjv-of-dMH" secondAttribute="trailing" constant="20" symbolic="YES" id="x2e-oK-RTC"/>
                                                             </constraints>
@@ -943,15 +944,34 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="2ex-C6-rw8" customClass="VideoView" customModule="DashcamWrangler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="450" height="256"/>
                             </customView>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sSf-ba-KaW">
+                                <rect key="frame" x="169" y="14" width="112" height="23"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="cXd-HF-yu1">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment image="backward.frame.fill" catalog="system" width="32"/>
+                                        <segment image="play.fill" catalog="system" width="32" tag="1"/>
+                                        <segment image="forward.frame.fill" catalog="system" width="32">
+                                            <nil key="label"/>
+                                        </segment>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="transportSegmentedControlClicked:" target="HA7-nF-P9w" id="JLx-tg-BRe"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="sSf-ba-KaW" firstAttribute="centerX" secondItem="M2u-pW-A98" secondAttribute="centerX" id="AN0-Em-wuP"/>
                             <constraint firstItem="2ex-C6-rw8" firstAttribute="leading" secondItem="M2u-pW-A98" secondAttribute="leading" id="GOn-Um-T01"/>
                             <constraint firstAttribute="bottom" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="44" id="Llg-BH-Fjv"/>
                             <constraint firstItem="2ex-C6-rw8" firstAttribute="top" secondItem="M2u-pW-A98" secondAttribute="top" id="PjL-3K-bZK"/>
                             <constraint firstAttribute="trailing" secondItem="2ex-C6-rw8" secondAttribute="trailing" id="XOA-fd-MWo"/>
+                            <constraint firstItem="sSf-ba-KaW" firstAttribute="top" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="8" symbolic="YES" id="aGz-8i-jKJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="transportSegmentedControl" destination="sSf-ba-KaW" id="jVk-So-ciy"/>
                         <outlet property="videoView" destination="2ex-C6-rw8" id="J8O-Sf-IdV"/>
                     </connections>
                 </viewController>
@@ -960,4 +980,9 @@
             <point key="canvasLocation" x="518" y="1070"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backward.frame.fill" catalog="system" width="17" height="13"/>
+        <image name="forward.frame.fill" catalog="system" width="17" height="13"/>
+        <image name="play.fill" catalog="system" width="12" height="13"/>
+    </resources>
 </document>
