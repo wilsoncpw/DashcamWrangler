@@ -23,6 +23,7 @@ class VideoViewController: NSViewController {
         }
         
         let _ = VideoTickNotify.observe { self.handleVideoTick ()}
+        let _ = VideoPlayingStatusChange.observe {self.playingStatusChanged () }
     }
     
     var isFirst = true {
@@ -37,20 +38,6 @@ class VideoViewController: NSViewController {
         }
     }
     
-    var paused = true {
-        didSet {
-            switch paused {
-            case true:
-                videoView.videoPlayer.pause()
-                transportSegmentedControl.setImage(NSImage (systemSymbolName: "play.fill", accessibilityDescription: nil), forSegment: 1)
-                
-            case false:
-                videoView.videoPlayer.play()
-                transportSegmentedControl.setImage(NSImage (systemSymbolName: "pause.fill", accessibilityDescription: nil), forSegment: 1)
-            }
-        }
-    }
-    
     func setVideoViewForJourney(_ journey: Journey) {
         Task.init {
             do {
@@ -61,7 +48,7 @@ class VideoViewController: NSViewController {
                     let videoPlayer = AVPlayer (playerItem: playerItem)
                     videoPlayer.preventsDisplaySleepDuringVideoPlayback = true
                     videoView.videoPlayer = videoPlayer
-                    paused = true
+                    videoView.videoPlayer.pause()
                 }
             } catch {
                 await MainActor.run { videoView.videoPlayer = nil }
@@ -76,6 +63,12 @@ class VideoViewController: NSViewController {
         transportSegmentedControl.setEnabled(videoView.videoPlayer.currentTime() >= CMTime(seconds: 1, preferredTimescale: 10), forSegment: 0)
     }
     
+    var isPaused: Bool { return videoView.videoPlayer.timeControlStatus == .paused }
+    
+    private func playingStatusChanged () {
+        transportSegmentedControl.setImage(NSImage (systemSymbolName: isPaused ? "play.fill" : "pause.fill", accessibilityDescription: nil), forSegment: 1)
+    }
+    
     @IBAction func transportSegmentedControlClicked(_ sender: Any) {
         guard let ctl = sender as? NSSegmentedControl else { return }
         
@@ -85,7 +78,7 @@ class VideoViewController: NSViewController {
         } else {
             PrevJourneyNotify ().post()
         }
-        case 1: paused = !paused
+        case 1: if isPaused { videoView.videoPlayer.play() } else { videoView.videoPlayer.pause() }
         case 2: NextJourneyNotify ().post()
         default: break
         }

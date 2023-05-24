@@ -70,6 +70,13 @@ struct VideoTickNotify: DeviceNotifiable {
     init () {}
 }
 
+struct VideoPlayingStatusChange: DeviceNotifiable {
+    static let name = NSNotification.Name ("videoPlayingStatusChange")
+    typealias T = Void
+    let payload: T
+    init () {}
+}
+
 struct EnvironmentChangedNotify: DeviceNotifiable {
     static let name = NSNotification.Name ("environmentChanged")
     typealias T = Void

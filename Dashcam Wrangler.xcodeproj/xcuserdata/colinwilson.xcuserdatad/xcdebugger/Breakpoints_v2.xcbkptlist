@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "1107CFBB-BB8C-4EFF-94AE-A99DC5025A8C"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D057AEFD-5325-465F-B4B6-E115303EA455"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Model/Contents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "getJourneys()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa01680337"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "712">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa01680337"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "744">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "408">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "440">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "444">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "428">
+               </Location>
+               <Location
+                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "460">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "63420EF8-650D-42D7-9AFD-E8558F8F778D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Model/Contents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getJourneys()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA132468-41D1-4344-BAA4-4D41C45670B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Model/Contents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "getJourneys()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EA132468-41D1-4344-BAA4-4D41C45670B1 - db0209aa01680337"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "648">
+               </Location>
+               <Location
+                  uuid = "EA132468-41D1-4344-BAA4-4D41C45670B1 - db0209aa01680337"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "652">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9407E53C-B52E-457D-B312-120AA85C3378"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Model/Video.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "getCreationDate()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9407E53C-B52E-457D-B312-120AA85C3378 - b0c9820a2f3df6f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for DashcamWrangler.Video.getCreationDate() async -&gt; Swift.Optional&lt;Swift.Double&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Video.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "700">
+               </Location>
+               <Location
+                  uuid = "9407E53C-B52E-457D-B312-120AA85C3378 - 17b100059bea8eed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for DashcamWrangler.Video.getCreationDate() async -&gt; Swift.Optional&lt;Swift.Double&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Video.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "348">
+               </Location>
+               <Location
+                  uuid = "9407E53C-B52E-457D-B312-120AA85C3378 - cae5411abc71c2ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for DashcamWrangler.Video.getCreationDate() async -&gt; Swift.Optional&lt;Swift.Double&gt;"
+                  moduleName = "DashcamWrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Video.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "420">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1218E6DE-B771-4E08-89DC-F153D83389B9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/UI Controllers/VideoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "transportSegmentedControlClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

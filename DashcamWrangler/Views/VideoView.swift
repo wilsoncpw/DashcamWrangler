@@ -64,7 +64,7 @@ class VideoView: NSView, CALayerDelegate {
         
         viewLayer.layoutManager = QuietLayoutManager.instance
         
-        videoPlayerLayer.addConstraintsToFillSuperlayer(leftMargin: 0, topMargin: 0, rightMargin: 0, bottomMargin: 10)
+        videoPlayerLayer.addConstraintsToFillSuperlayer(leftMargin: 10, topMargin: 0, rightMargin: 10, bottomMargin: 10)
         videoPlayerLayer.layoutManager = CAConstraintLayoutManager ()
         viewLayer.addSublayer(videoPlayerLayer)
         
@@ -195,7 +195,7 @@ class VideoView: NSView, CALayerDelegate {
      
     private func locationForEvent (_ event: NSEvent) -> CGPoint {
         let initialLocation = event.locationInWindow
-        return convert(initialLocation, from: nil)
+        return videoPlayerLayer.convert(initialLocation, from: nil)
     }
     
     private func getMouseClickArea (mouseEvent: NSEvent) -> mouseClickArea {
@@ -252,7 +252,7 @@ class VideoView: NSView, CALayerDelegate {
     
     
     private func playingStatusChanged () {
-        
+        VideoPlayingStatusChange().post()
     }
     
     private var tickCount = 0

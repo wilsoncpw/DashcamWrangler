@@ -28,7 +28,7 @@
 
 /* Begin PBXFileReference section */
 		AA1AA3192A18398000C563D7 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
-		AA77118E2A0123FB00CAE059 /* DashcamWrangler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashcamWrangler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA77118E2A0123FB00CAE059 /* Dashcam Wrangler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dashcam Wrangler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7711912A0123FB00CAE059 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA7711932A0123FB00CAE059 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA7711952A0123FB00CAE059 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		AA77118F2A0123FB00CAE059 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA77118E2A0123FB00CAE059 /* DashcamWrangler.app */,
+				AA77118E2A0123FB00CAE059 /* Dashcam Wrangler.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,9 +78,9 @@
 		AA7711902A0123FB00CAE059 /* DashcamWrangler */ = {
 			isa = PBXGroup;
 			children = (
+				AA7711AF2A0172F500CAE059 /* Extensions */,
 				AA7711A02A01255300CAE059 /* Model */,
 				AA7711AD2A0172B700CAE059 /* UI Controllers */,
-				AA7711AF2A0172F500CAE059 /* Extensions */,
 				AA7711AE2A0172D900CAE059 /* Views */,
 				AA7711912A0123FB00CAE059 /* AppDelegate.swift */,
 				AA7711952A0123FB00CAE059 /* Assets.xcassets */,
@@ -135,9 +135,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA77118D2A0123FB00CAE059 /* DashcamWrangler */ = {
+		AA77118D2A0123FB00CAE059 /* Dashcam Wrangler */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA77119D2A0123FB00CAE059 /* Build configuration list for PBXNativeTarget "DashcamWrangler" */;
+			buildConfigurationList = AA77119D2A0123FB00CAE059 /* Build configuration list for PBXNativeTarget "Dashcam Wrangler" */;
 			buildPhases = (
 				AA77118A2A0123FB00CAE059 /* Sources */,
 				AA77118B2A0123FB00CAE059 /* Frameworks */,
@@ -147,9 +147,9 @@
 			);
 			dependencies = (
 			);
-			name = DashcamWrangler;
+			name = "Dashcam Wrangler";
 			productName = DashcamWrangler;
-			productReference = AA77118E2A0123FB00CAE059 /* DashcamWrangler.app */;
+			productReference = AA77118E2A0123FB00CAE059 /* Dashcam Wrangler.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA7711892A0123FB00CAE059 /* Build configuration list for PBXProject "DashcamWrangler" */;
+			buildConfigurationList = AA7711892A0123FB00CAE059 /* Build configuration list for PBXProject "Dashcam Wrangler" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -180,7 +180,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA77118D2A0123FB00CAE059 /* DashcamWrangler */,
+				AA77118D2A0123FB00CAE059 /* Dashcam Wrangler */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -338,6 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -359,6 +361,7 @@
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -386,6 +389,7 @@
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -404,7 +408,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA7711892A0123FB00CAE059 /* Build configuration list for PBXProject "DashcamWrangler" */ = {
+		AA7711892A0123FB00CAE059 /* Build configuration list for PBXProject "Dashcam Wrangler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA77119B2A0123FB00CAE059 /* Debug */,
@@ -413,7 +417,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA77119D2A0123FB00CAE059 /* Build configuration list for PBXNativeTarget "DashcamWrangler" */ = {
+		AA77119D2A0123FB00CAE059 /* Build configuration list for PBXNativeTarget "Dashcam Wrangler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA77119E2A0123FB00CAE059 /* Debug */,

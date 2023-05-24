@@ -64,10 +64,7 @@ class Contents {
                 let video = videoTuple.video
                 let durationSeconds = videoTuple.duration.seconds
                 let timestamp = videoTuple.timestamp ?? video.timestamp
-                
-                let dt = Date (timeIntervalSince1970: timestamp)
-                print (dt)
-            
+                            
                 if let thisPrevVideoEnd = prevVideoEnd {
                     let diff = abs (timestamp - thisPrevVideoEnd)
                     if diff > 5 && currentJourneyVideos.count > 0 {
