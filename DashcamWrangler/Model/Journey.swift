@@ -26,6 +26,7 @@ protocol MergeDelegate: NSObjectProtocol {
 
 class Journey {
     let videos : [Video]
+    let creationDate: Date
 
     var task: Task<(), Never>?
 
@@ -46,8 +47,9 @@ class Journey {
         }
     }
         
-    init (videos: [Video]) {
+    init (videos: [Video], creationDate: Date) {
         self.videos = videos
+        self.creationDate = creationDate
     }
     
     func getThumbnail () async throws -> CGImage {
@@ -69,22 +71,15 @@ class Journey {
     func getMergedName (resampled: Bool) -> String {
         let ext = ".mp4"
         let st : String
-        if let firstDate = videos [0].creationDate {
-            let dateFormatter = DateFormatter ()
-            
-            if let name {
-                dateFormatter.dateFormat = "yyMMdd"
-                st = dateFormatter.string(from: firstDate) + " " + name
-            } else {
-                dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
-                st = dateFormatter.string(from: firstDate) + (resampled ? " Resampled" : " Joined")
-            }
+        let firstDate = creationDate
+        let dateFormatter = DateFormatter ()
+        
+        if let name {
+            dateFormatter.dateFormat = "yyMMdd"
+            st = dateFormatter.string(from: firstDate) + " " + name
         } else {
-            if let name {
-                st = name
-            } else {
-                st = "Unknown "
-            }
+            dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
+            st = dateFormatter.string(from: firstDate) + (resampled ? " Resampled" : " Joined")
         }
        
         return st + ext

@@ -9,6 +9,9 @@ import Foundation
 import AVFoundation
 
 extension CGLineCap  {
+    //---------------------------------------------------------------------
+    /// Initialise from CAShapeLayer
+    /// - Parameter cap: The cap to initialise from
     init (from cap: CAShapeLayerLineCap) {
         switch cap {
         case .butt: self = .butt
@@ -20,6 +23,9 @@ extension CGLineCap  {
 }
 
 extension CGLineJoin {
+    //---------------------------------------------------------------------
+    /// Initialise from CAShapeLayer
+    /// - Parameter join: The join to initialize from
     init (from join: CAShapeLayerLineJoin) {
         switch join {
         case .bevel: self = .bevel
@@ -31,6 +37,13 @@ extension CGLineJoin {
 }
 
 extension CALayer {
+    //---------------------------------------------------------------------
+    /// Add constraints to this layer to fill the super layer
+    /// - Parameters:
+    ///   - leftMargin: Margins
+    ///   - topMargin: ""
+    ///   - rightMargin: ""
+    ///   - bottomMargin: ""
     func addConstraintsToFillSuperlayer (leftMargin: CGFloat, topMargin: CGFloat, rightMargin: CGFloat, bottomMargin: CGFloat) {
         addConstraint(CAConstraint (attribute: .minX, relativeTo: "superlayer", attribute: .minX, offset:leftMargin))
         addConstraint(CAConstraint (attribute: .minY, relativeTo: "superlayer", attribute: .minY, offset:bottomMargin))

@@ -43,7 +43,7 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
             Task.init {
                 do {
                     let duration = try await journey.getDuration()
-                    await MainActor.run { durationLabel.stringValue = duration.seconds.formattedTimeInterval() }
+                    await MainActor.run { durationLabel.stringValue = "Duration:" + duration.seconds.formattedTimeInterval() }
                 } catch let e {
                     await MainActor.run {durationLabel.stringValue = e.localizedDescription }
                 }

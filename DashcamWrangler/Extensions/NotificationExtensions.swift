@@ -7,12 +7,16 @@
 
 import Foundation
 
+//---------------------------------------------------------------------
+// DeviceNotifiable - base protocol for notifications
 protocol DeviceNotifiable {
     associatedtype T
     static var name: Notification.Name { get }
     var payload: T { get }
 }
 
+//---------------------------------------------------------------------
+// Extend the protocol with functions to post & observe
 extension DeviceNotifiable {
     func post () {
         NotificationCenter.default.post(name: Self.name, object: payload)
@@ -33,6 +37,8 @@ extension DeviceNotifiable {
     }
 }
 
+//---------------------------------------------------------------------
+/// Notifies that a journey has been selected in the JourneyViewController
 struct JourneySelection {
     let journey: Journey
     let isFirst: Bool
@@ -49,6 +55,8 @@ struct JourneySelectedNotify: DeviceNotifiable {
     }
 }
 
+//---------------------------------------------------------------------
+/// Notifies the JourneyViewContoller to select the next journey
 struct NextJourneyNotify: DeviceNotifiable {
     static let name = NSNotification.Name ("nextJourney")
     typealias T = Void
@@ -56,6 +64,8 @@ struct NextJourneyNotify: DeviceNotifiable {
     init () {}
 }
 
+//---------------------------------------------------------------------
+/// Notifies the JourneyViewContoller to select the previous journey
 struct PrevJourneyNotify: DeviceNotifiable {
     static let name = NSNotification.Name ("prevJourney")
     typealias T = Void
@@ -70,15 +80,10 @@ struct VideoTickNotify: DeviceNotifiable {
     init () {}
 }
 
+//---------------------------------------------------------------------
+/// Notifies that the video player has stoped or started
 struct VideoPlayingStatusChange: DeviceNotifiable {
     static let name = NSNotification.Name ("videoPlayingStatusChange")
-    typealias T = Void
-    let payload: T
-    init () {}
-}
-
-struct EnvironmentChangedNotify: DeviceNotifiable {
-    static let name = NSNotification.Name ("environmentChanged")
     typealias T = Void
     let payload: T
     init () {}
