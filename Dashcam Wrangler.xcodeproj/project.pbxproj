@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA1AA31A2A18398000C563D7 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1AA3192A18398000C563D7 /* URLExtensions.swift */; };
+		AA2020A22A3D22B7009EF171 /* ExportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2020A12A3D22B7009EF171 /* ExportController.swift */; };
 		AA7711922A0123FB00CAE059 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7711912A0123FB00CAE059 /* AppDelegate.swift */; };
 		AA7711942A0123FB00CAE059 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7711932A0123FB00CAE059 /* ViewController.swift */; };
 		AA7711962A0123FB00CAE059 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7711952A0123FB00CAE059 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		AA1AA3192A18398000C563D7 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		AA2020A12A3D22B7009EF171 /* ExportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportController.swift; sourceTree = "<group>"; };
 		AA77118E2A0123FB00CAE059 /* Dashcam Wrangler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dashcam Wrangler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7711912A0123FB00CAE059 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA7711932A0123FB00CAE059 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				AA7711A32A01259400CAE059 /* Journey.swift */,
 				AAF17CCE2A03248200F44ABE /* AVAssetExportSessionEx.swift */,
 				AA7711A52A0125D100CAE059 /* Video.swift */,
+				AA2020A12A3D22B7009EF171 /* ExportController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				AA7711AC2A0163CD00CAE059 /* TimeIntervalExtensions.swift in Sources */,
 				AA7711A22A01256700CAE059 /* Contents.swift in Sources */,
 				AA7711A82A01533900CAE059 /* JourneysViewController.swift in Sources */,
+				AA2020A22A3D22B7009EF171 /* ExportController.swift in Sources */,
 				AA1AA31A2A18398000C563D7 /* URLExtensions.swift in Sources */,
 				AA79448E2A029EA3006ABECC /* VideoView.swift in Sources */,
 				AA7944922A02A5B2006ABECC /* NotificationExtensions.swift in Sources */,
@@ -357,7 +361,7 @@
 				CODE_SIGN_ENTITLEMENTS = DashcamWrangler/DashcamWrangler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -369,7 +373,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinwilson.DashcamWrangler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -385,7 +389,7 @@
 				CODE_SIGN_ENTITLEMENTS = DashcamWrangler/DashcamWrangler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -397,7 +401,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinwilson.DashcamWrangler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

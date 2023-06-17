@@ -10,9 +10,6 @@ import AVFoundation
 
 class JourneyTableCellView: NSTableCellView, MergeDelegate {
 
- 
-    
-
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var durationLabel: NSTextField!
     @IBOutlet weak var thumbnailImageView: NSImageView!
@@ -21,24 +18,21 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBOutlet weak var nameTextField: NSTextField!
     
-    
-    //    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//
-//        // Drawing code here.
-//    }
-    
-    var progressTimer: Timer?
-    var progressEnding = false
-    
     override var objectValue: Any? {
         didSet {
             guard let journey = objectValue as? Journey else { return }
             
+            journey.mergeDelegate = self
+            
             nameLabel.stringValue = journey.getMergedName(resampled: false)
             noVideosLabel.stringValue = "\(journey.videos.count) \(journey.videos.count == 1 ? "clip" : "clips")"
             nameTextField.stringValue = journey.name ?? ""
-            progressBar.isHidden = true
+            
+            setProgessDetails()
+            
+            if let mergeProgress = journey.mergeProgress {
+                progressBar.doubleValue = mergeProgress
+            }
             
             Task.init {
                 do {
@@ -69,7 +63,6 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
         guard let journey = objectValue as? Journey else { return }
 
         if journey.task == nil {
-            joinButton.title = "Cancel merge"
             let url = UserDefaults.standard.outputURL
             let name = journey.getMergedName(resampled: false)
             let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
@@ -79,11 +72,8 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
             journey.task = Task.init {
                 do {
                     //              try await journey.merge(intoURL: fileUrl, withPreset: /*AVAssetExportPresetPassthrough*/ AVAssetExportPresetHEVC1920x1080, delegate: self)
-                    try await journey.join(intoURL: fileUrl, delegate: self)
+                    try await journey.join(intoURL: fileUrl)
                     journey.task = nil
-                    await MainActor.run {
-                        joinButton.title = "Merge"
-                    }
                 } catch {
                 }
             }
@@ -92,24 +82,31 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
         }
     }
     
-    func mergeStarted(session: ProgressSource) {
-        progressBar.doubleValue = 0
-        progressBar.isHidden = false
-        progressEnding = false
-        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [self] timer in
-            if (progressEnding) {
-                progressTimer?.invalidate()
-                progressBar.isHidden = true
-                return
-            }
-            progressBar.doubleValue = Double (session.progress) * 100
+    func setProgessDetails () {
+        guard let journey = objectValue as? Journey else { return }
+        
+        if journey.isMerging {
+            progressBar.isHidden = false
+            joinButton.title = "Cancel merge"
+            
+        } else {
+            progressBar.isHidden = true
+            joinButton.title = "Merge"
         }
+
     }
     
-    func mergeDone(session: ProgressSource) {
-        progressBar.doubleValue = 100
-        progressEnding = true
-       
+    func mergeStart() {
+        progressBar.doubleValue = 0
+        setProgessDetails()
+    }
+    
+    func mergeProgress(progress: Double) {
+        progressBar.doubleValue = progress
+    }
+    
+    func mergeDone() {
+        setProgessDetails()
     }
     
     @IBAction func nameTextFieldChanged(_ sender: Any) {

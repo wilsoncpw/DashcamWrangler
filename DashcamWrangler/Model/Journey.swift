@@ -19,9 +19,17 @@ extension AVAssetExportSession: ProgressSource {
 extension AVAssetExportSessionEx: ProgressSource {
 }
 
-protocol MergeDelegate: NSObjectProtocol {
+protocol ExportSessionDelegate: NSObjectProtocol {
     func mergeDone (session: ProgressSource)
     func mergeStarted (session: ProgressSource)
+    var mergeDelegate : MergeDelegate? { get set }
+    var progress: Double { get }
+}
+
+protocol MergeDelegate: NSObjectProtocol {
+    func mergeStart ()
+    func mergeProgress (progress: Double)
+    func mergeDone ()
 }
 
 class Journey {
@@ -29,6 +37,17 @@ class Journey {
     let creationDate: Date
 
     var task: Task<(), Never>?
+    private var exportSessionDelegate: ExportSessionDelegate?
+    
+    var mergeDelegate: MergeDelegate? {
+        didSet { exportSessionDelegate?.mergeDelegate = mergeDelegate }
+    }
+    
+    var mergeProgress: Double? {
+        return exportSessionDelegate?.progress
+    }
+    
+    var isMerging: Bool { return exportSessionDelegate != nil }
 
     var name: String? {
         get {
@@ -120,7 +139,7 @@ class Journey {
         return composition
     }
     
-    func merge(intoURL url: URL, withPreset presetName: String, delegate: MergeDelegate?) async throws {
+    func merge(intoURL url: URL, withPreset presetName: String) async throws {
 
         let asset = try await getMergedComposition()
         guard let exportSession = AVAssetExportSession (asset: asset, presetName: presetName) else {
@@ -132,13 +151,13 @@ class Journey {
         
         try? FileManager.default.removeItem(at: url)
 
-        await MainActor.run { delegate?.mergeStarted(session: exportSession) }
+        await MainActor.run { exportSessionDelegate?.mergeStarted(session: exportSession) }
         await exportSession.export()
-        await MainActor.run { delegate?.mergeDone(session: exportSession) }
+        await MainActor.run { exportSessionDelegate?.mergeDone(session: exportSession) }
 
     }
     
-    func join(intoURL url: URL, delegate: MergeDelegate?) async throws {
+    func join(intoURL url: URL) async throws {
 
         let asset = try await getMergedComposition()
         let exportSession = AVAssetExportSessionEx (asset: asset, journey: self)
@@ -155,10 +174,14 @@ class Journey {
         ]
         
         try? FileManager.default.removeItem(at: url)
-
-        await MainActor.run { delegate?.mergeStarted(session: exportSession) }
+        
+        exportSessionDelegate = ExportController ()
+        exportSessionDelegate?.mergeDelegate = mergeDelegate
+        await MainActor.run { exportSessionDelegate?.mergeStarted(session: exportSession) }
+        
         await exportSession.export()
-        await MainActor.run { delegate?.mergeDone(session: exportSession) }
+        await MainActor.run { exportSessionDelegate?.mergeDone(session: exportSession) }
+        exportSessionDelegate = nil
 
     }
 }

@@ -222,5 +222,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CF652FC-B406-4059-860A-30FFA5199B57"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Views/JourneyTableCellView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "objectValue"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "5CF652FC-B406-4059-860A-30FFA5199B57 - 44a01edeaf5d49df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneyTableCellView.objectValue.didset : Swift.Optional&lt;Any&gt;"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Views/JourneyTableCellView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "5CF652FC-B406-4059-860A-30FFA5199B57 - 44a01edeaf5d49df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneyTableCellView.objectValue.didset : Swift.Optional&lt;Any&gt;"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Views/JourneyTableCellView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
