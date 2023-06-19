@@ -69,11 +69,8 @@ class JourneysViewController: NSViewController {
                 alert.informativeText = "Some of the video files in the journey are locked"
                 alert.alertStyle = .warning
                 alert.addButton(withTitle: "Cancel")
-                alert.addButton(withTitle: "Delete anyway")
-                    
-                if #available(macOS 11.0, *) {
-                    alert.buttons.last?.hasDestructiveAction = true
-                }
+                alert.addButton(withTitle: "Delete anyway").hasDestructiveAction = true
+                
                 switch alert.runModal() {
                 case .alertSecondButtonReturn:
                     try? contents.deleteVideoFilesForJourney(journey, includeLocked: true)
