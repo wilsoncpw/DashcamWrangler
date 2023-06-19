@@ -19,6 +19,7 @@ class JourneysViewController: NSViewController {
         
         let _ = NextJourneyNotify.observe { self.selectNext() }
         let _ = PrevJourneyNotify.observe { self.selectPrev() }
+        let _ = DeleteJourneyNotify.observe { journey in self.deleteJourney (journey) }
     }
     
     var journeys: [Journey]? {
@@ -54,6 +55,37 @@ class JourneysViewController: NSViewController {
         let newRow = journeysTableView.selectedRow - 1
         journeysTableView.selectRowIndexes([newRow], byExtendingSelection: false)
         journeysTableView.scrollRowToVisible(newRow)
+    }
+        
+    private func deleteJourney (_ journey: Journey) {
+        guard let contents else { return }
+        
+        do {
+            do {
+                try contents.deleteVideoFilesForJourney(journey, includeLocked: false)
+            } catch CocoaError.fileWriteNoPermission {
+                let alert = NSAlert()
+                alert.messageText = "Warning"
+                alert.informativeText = "Some of the video files in the journey are locked"
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "Cancel")
+                alert.addButton(withTitle: "Delete anyway")
+                    
+                if #available(macOS 11.0, *) {
+                    alert.buttons.last?.hasDestructiveAction = true
+                }
+                switch alert.runModal() {
+                case .alertSecondButtonReturn:
+                    try? contents.deleteVideoFilesForJourney(journey, includeLocked: true)
+                default: throw CocoaError (.fileWriteNoPermission)
+                }
+            }
+            journeys?.removeAll(where:) { arrayJourney in arrayJourney === journey }
+            journeysTableView.reloadData()
+        }
+        catch let e {
+            print (e)
+        }
     }
 }
 

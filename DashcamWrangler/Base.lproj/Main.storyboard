@@ -860,6 +860,16 @@
                                                                         <action selector="nameTextFieldChanged:" target="IiX-7t-ktl" id="oIH-FE-Y84"/>
                                                                     </connections>
                                                                 </textField>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N52-e7-MQt">
+                                                                    <rect key="frame" x="374" y="6" width="17" height="15"/>
+                                                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="trash" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4rV-FU-p92">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="deleteButtonClicked:" target="IiX-7t-ktl" id="N2C-sI-UYb"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="UiV-82-kS4" firstAttribute="leading" secondItem="N0g-rU-3Oq" secondAttribute="trailing" constant="8" symbolic="YES" id="B8s-vq-1hC"/>
@@ -870,8 +880,10 @@
                                                                 <constraint firstItem="N0g-rU-3Oq" firstAttribute="top" secondItem="IiX-7t-ktl" secondAttribute="top" constant="7" id="Kl0-lK-Pcd"/>
                                                                 <constraint firstAttribute="trailing" secondItem="7Nl-UV-QUB" secondAttribute="trailing" constant="20" symbolic="YES" id="Oms-Ht-mHs"/>
                                                                 <constraint firstItem="RQq-86-cc1" firstAttribute="top" secondItem="Zjv-of-dMH" secondAttribute="bottom" constant="8" symbolic="YES" id="PBR-IU-xDP"/>
+                                                                <constraint firstItem="N52-e7-MQt" firstAttribute="top" secondItem="7Nl-UV-QUB" secondAttribute="bottom" constant="4" id="Q1e-79-DYe"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RQq-86-cc1" secondAttribute="trailing" constant="20" symbolic="YES" id="Qin-P8-Rdh"/>
                                                                 <constraint firstItem="YK3-iX-6Qv" firstAttribute="trailing" secondItem="Jf2-7e-ewx" secondAttribute="trailing" id="QyD-aY-EUH"/>
+                                                                <constraint firstItem="N52-e7-MQt" firstAttribute="trailing" secondItem="7Nl-UV-QUB" secondAttribute="trailing" id="SeE-Jn-ui7"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UiV-82-kS4" secondAttribute="trailing" constant="20" symbolic="YES" id="YiP-MW-ukJ"/>
                                                                 <constraint firstItem="Jf2-7e-ewx" firstAttribute="centerY" secondItem="Zjv-of-dMH" secondAttribute="centerY" id="Ymz-8W-Wqi"/>
                                                                 <constraint firstItem="YK3-iX-6Qv" firstAttribute="leading" secondItem="UiV-82-kS4" secondAttribute="leading" id="fda-xK-Woh"/>
@@ -984,5 +996,6 @@
         <image name="backward.frame.fill" catalog="system" width="17" height="13"/>
         <image name="forward.frame.fill" catalog="system" width="17" height="13"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
     </resources>
 </document>

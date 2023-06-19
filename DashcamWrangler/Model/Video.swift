@@ -81,5 +81,16 @@ class Video {
     func getFirstAudioTrack () async throws -> AVAssetTrack? {
         return try await asset.loadTracks(withMediaType: .audio).first
     }
+    
+    func deleteSourceFile (includeLocked: Bool) throws {
+        let fileManager = FileManager.default
+        let path = folderURL.appendingPathComponent(fileName).path
+        
+        if includeLocked {
+            try fileManager.setAttributes([.immutable : NSNumber (0)], ofItemAtPath: path)
+        }
+        
+        try fileManager.removeItem(atPath: path)
+    }
 }
 

@@ -82,6 +82,11 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
         }
     }
     
+    @IBAction func deleteButtonClicked(_ sender: Any) {
+        guard let journey = objectValue as? Journey else { return }
+        DeleteJourneyNotify(journey: journey).post()
+    }
+    
     func setProgessDetails () {
         guard let journey = objectValue as? Journey else { return }
         

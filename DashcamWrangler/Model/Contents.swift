@@ -14,7 +14,7 @@ import AVKit
 /// Contains an array of Journeys, each holding an array of contiguous videos
 class Contents {
     let folderURL: URL
-    private let videos: [Video]
+    private var videos: [Video]
         
     //---------------------------------------------------------------------------------
     /// Initialize from a folder URL.
@@ -93,6 +93,14 @@ class Contents {
             }
             
             return journies
+        }
+    }
+    
+    func deleteVideoFilesForJourney (_ journey: Journey, includeLocked: Bool) throws {
+        
+        try journey.videos.forEach { video in
+            try video.deleteSourceFile (includeLocked: includeLocked)
+            videos.removeAll(where: ) { arrayVid in arrayVid === video }
         }
     }
 }

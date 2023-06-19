@@ -89,4 +89,10 @@ struct VideoPlayingStatusChange: DeviceNotifiable {
     init () {}
 }
 
+struct DeleteJourneyNotify: DeviceNotifiable {
+    static let name = NSNotification.Name ("DeleteJourney")
+    typealias T = Journey
+    let payload: T
+    init (journey: Journey) { payload = journey }
+}
 

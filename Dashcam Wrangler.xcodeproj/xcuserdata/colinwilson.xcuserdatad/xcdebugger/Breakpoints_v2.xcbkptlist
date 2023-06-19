@@ -270,5 +270,158 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/UI Controllers/JourneysViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "deleteJourney(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525adc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "840">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525abf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1996">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525abf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1988">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525abf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "2196">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b12"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "2568">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b50"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "3288">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b96"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "3940">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "2192">
+               </Location>
+               <Location
+                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
+                  moduleName = "Dashcam Wrangler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "2208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
