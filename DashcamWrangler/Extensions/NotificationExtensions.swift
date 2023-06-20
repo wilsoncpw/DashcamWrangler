@@ -73,6 +73,8 @@ struct PrevJourneyNotify: DeviceNotifiable {
     init () {}
 }
 
+//---------------------------------------------------------------------
+/// Sent from VideoView to its controller
 struct VideoTickNotify: DeviceNotifiable {
     static let name = NSNotification.Name ("videoTick")
     typealias T = Void
@@ -81,7 +83,7 @@ struct VideoTickNotify: DeviceNotifiable {
 }
 
 //---------------------------------------------------------------------
-/// Notifies that the video player has stoped or started
+/// Notifies that the video player has stopped or started
 struct VideoPlayingStatusChange: DeviceNotifiable {
     static let name = NSNotification.Name ("videoPlayingStatusChange")
     typealias T = Void
@@ -89,6 +91,8 @@ struct VideoPlayingStatusChange: DeviceNotifiable {
     init () {}
 }
 
+//---------------------------------------------------------------------
+/// Sent from JourneyTableCellView to its controller when delete button is clicked
 struct DeleteJourneyNotify: DeviceNotifiable {
     static let name = NSNotification.Name ("DeleteJourney")
     typealias T = Journey

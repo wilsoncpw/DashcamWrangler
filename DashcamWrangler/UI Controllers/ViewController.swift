@@ -15,8 +15,6 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        UserDefaults.standard.removeBookmarkKey()
-
         UserDefaults.standard.registerDashcamWranglerDefaults()
 
         if let url = UserDefaults.standard.outputURL {

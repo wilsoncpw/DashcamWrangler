@@ -772,11 +772,11 @@
             <objects>
                 <viewController id="Mak-5A-2lJ" customClass="JourneysViewController" customModule="Dashcam_Wrangler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="pzR-p0-kJd">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="62" horizontalPageScroll="10" verticalLineScroll="62" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVa-Dc-UPR">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <rect key="frame" x="0.0" y="60" width="450" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" id="ndl-oM-Dl6">
                                     <rect key="frame" x="1" y="1" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -929,16 +929,49 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2z2-pW-jSb">
+                                <rect key="frame" x="18" y="20" width="85" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Output folder" id="gZv-d1-FXt">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V4R-ez-Mzf">
+                                <rect key="frame" x="109" y="9" width="34" height="38"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFolder" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lQH-fq-t5G">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="outputFolderButtonClicked:" target="Mak-5A-2lJ" id="mcf-LC-FLK"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WwT-8N-4Wh">
+                                <rect key="frame" x="151" y="20" width="37" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Rlp-a5-ekq">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="V4R-ez-Mzf" firstAttribute="centerY" secondItem="2z2-pW-jSb" secondAttribute="centerY" id="8iX-Iz-Ylj"/>
+                            <constraint firstItem="WwT-8N-4Wh" firstAttribute="leading" secondItem="V4R-ez-Mzf" secondAttribute="trailing" constant="10" id="AYG-O4-SIT"/>
+                            <constraint firstItem="WwT-8N-4Wh" firstAttribute="centerY" secondItem="V4R-ez-Mzf" secondAttribute="centerY" id="IY8-14-cPP"/>
                             <constraint firstAttribute="trailing" secondItem="bVa-Dc-UPR" secondAttribute="trailing" id="Sfj-lV-Wew"/>
+                            <constraint firstItem="V4R-ez-Mzf" firstAttribute="leading" secondItem="2z2-pW-jSb" secondAttribute="trailing" constant="8" symbolic="YES" id="Xgp-jy-qiV"/>
+                            <constraint firstItem="2z2-pW-jSb" firstAttribute="leading" secondItem="pzR-p0-kJd" secondAttribute="leading" constant="20" symbolic="YES" id="bZJ-MM-AdI"/>
                             <constraint firstItem="bVa-Dc-UPR" firstAttribute="top" secondItem="pzR-p0-kJd" secondAttribute="top" id="i0k-ea-BCs"/>
                             <constraint firstItem="bVa-Dc-UPR" firstAttribute="leading" secondItem="pzR-p0-kJd" secondAttribute="leading" id="kya-nE-ze4"/>
-                            <constraint firstAttribute="bottom" secondItem="bVa-Dc-UPR" secondAttribute="bottom" id="qeY-fQ-WvM"/>
+                            <constraint firstItem="2z2-pW-jSb" firstAttribute="top" secondItem="bVa-Dc-UPR" secondAttribute="bottom" constant="24" id="mH8-rJ-RxW"/>
+                            <constraint firstAttribute="bottom" secondItem="bVa-Dc-UPR" secondAttribute="bottom" constant="60" id="qeY-fQ-WvM"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="journeysTableView" destination="azU-B3-pCs" id="4dl-tO-Dnb"/>
+                        <outlet property="outputFolderLabel" destination="WwT-8N-4Wh" id="IvL-by-nCQ"/>
                     </connections>
                 </viewController>
                 <customObject id="rpG-G1-mYe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -954,10 +987,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="2ex-C6-rw8" customClass="VideoView" customModule="Dashcam_Wrangler" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="450" height="256"/>
+                                <rect key="frame" x="0.0" y="60" width="450" height="240"/>
                             </customView>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sSf-ba-KaW">
-                                <rect key="frame" x="169" y="14" width="112" height="23"/>
+                                <rect key="frame" x="169" y="18" width="112" height="23"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="cXd-HF-yu1">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -976,10 +1009,10 @@
                         <constraints>
                             <constraint firstItem="sSf-ba-KaW" firstAttribute="centerX" secondItem="M2u-pW-A98" secondAttribute="centerX" id="AN0-Em-wuP"/>
                             <constraint firstItem="2ex-C6-rw8" firstAttribute="leading" secondItem="M2u-pW-A98" secondAttribute="leading" id="GOn-Um-T01"/>
-                            <constraint firstAttribute="bottom" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="44" id="Llg-BH-Fjv"/>
+                            <constraint firstAttribute="bottom" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="60" id="Llg-BH-Fjv"/>
                             <constraint firstItem="2ex-C6-rw8" firstAttribute="top" secondItem="M2u-pW-A98" secondAttribute="top" id="PjL-3K-bZK"/>
                             <constraint firstAttribute="trailing" secondItem="2ex-C6-rw8" secondAttribute="trailing" id="XOA-fd-MWo"/>
-                            <constraint firstItem="sSf-ba-KaW" firstAttribute="top" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="8" symbolic="YES" id="aGz-8i-jKJ"/>
+                            <constraint firstItem="sSf-ba-KaW" firstAttribute="top" secondItem="2ex-C6-rw8" secondAttribute="bottom" constant="20" id="aGz-8i-jKJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -993,6 +1026,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NSFolder" width="32" height="32"/>
         <image name="backward.frame.fill" catalog="system" width="17" height="13"/>
         <image name="forward.frame.fill" catalog="system" width="17" height="13"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>

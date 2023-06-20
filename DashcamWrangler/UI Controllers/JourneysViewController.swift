@@ -10,6 +10,7 @@ import Cocoa
 class JourneysViewController: NSViewController {
 
     @IBOutlet weak var journeysTableView: NSTableView!
+    @IBOutlet weak var outputFolderLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,10 @@ class JourneysViewController: NSViewController {
         let _ = NextJourneyNotify.observe { self.selectNext() }
         let _ = PrevJourneyNotify.observe { self.selectPrev() }
         let _ = DeleteJourneyNotify.observe { journey in self.deleteJourney (journey) }
+    }
+    
+    override func viewDidAppear() {
+        showOutputFolder()
     }
     
     var journeys: [Journey]? {
@@ -40,6 +45,22 @@ class JourneysViewController: NSViewController {
                 }
             }
         }
+    }
+    
+    private func showOutputFolder () {
+        
+        guard let url = UserDefaults.standard.outputURL, url.isFileURL else {
+            outputFolderLabel.stringValue = "-"
+            outputFolderLabel.toolTip = "Not set"
+            return
+        }
+        
+        let path = url.standardizedFileURL.path(percentEncoded: false)
+        
+        let st = FileManager.default.displayName(atPath: path)
+                
+        outputFolderLabel.stringValue = st
+        outputFolderLabel.toolTip = path
     }
     
     private func selectNext () {
@@ -84,6 +105,24 @@ class JourneysViewController: NSViewController {
             print (e)
         }
     }
+    
+    @IBAction func outputFolderButtonClicked(_ sender: Any) {
+        let openPanel = NSOpenPanel ()
+        
+        openPanel.canChooseDirectories = true
+        openPanel.canChooseFiles = false
+        openPanel.allowsMultipleSelection = false
+        openPanel.resolvesAliases = true
+        openPanel.directoryURL = UserDefaults.standard.outputURL
+        
+        if openPanel.runModal()  == .OK {
+            if let url = openPanel.url {
+                UserDefaults.standard.outputURL = url
+                showOutputFolder()
+            }
+        }
+    }
+    
 }
 
 extension JourneysViewController: NSTableViewDataSource {
