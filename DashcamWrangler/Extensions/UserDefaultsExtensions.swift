@@ -98,6 +98,7 @@ extension UserDefaults {
     func registerDashcamWranglerDefaults () {
         var defaults: [String: Any] = [customVideoWidthKey:CGFloat (1920), customVideoFramerateKey:CGFloat(24)]
         
+        //We've given ourselves the user's Movies folder in the App Sandbox - so make that the default
         let defaultURL = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask).first!.resolvingSymlinksInPath()
         if let bookmarkData = try? defaultURL.bookmarkData(options: .withSecurityScope,  includingResourceValuesForKeys: nil, relativeTo: nil) {
             defaults [bookmarkOutputFolderKey] = bookmarkData

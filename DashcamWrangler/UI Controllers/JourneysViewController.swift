@@ -12,6 +12,8 @@ class JourneysViewController: NSViewController {
     @IBOutlet weak var journeysTableView: NSTableView!
     @IBOutlet weak var outputFolderLabel: NSTextField!
     
+    //---------------------------------------------------------------------
+    /// Register ourself with the app delegate & hookup observers
     override func viewDidLoad() {
         super.viewDidLoad()
         if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
@@ -23,16 +25,24 @@ class JourneysViewController: NSViewController {
         let _ = DeleteJourneyNotify.observe { journey in self.deleteJourney (journey) }
     }
     
+    //---------------------------------------------------------------------
+    /// update the outputFolderLabel
+    ///
+    /// We can't do this in viewDidLoad because that happens before the  UserDefaults are initialised
     override func viewDidAppear() {
         showOutputFolder()
     }
     
-    var journeys: [Journey]? {
+    //---------------------------------------------------------------------
+    /// Array of journes exyracted from the contents
+    private var journeys: [Journey]? {
         didSet {
             journeysTableView.reloadData()
         }
     }
     
+    //---------------------------------------------------------------------
+    /// The video contents of the selected folder - set by the AppDelegate
     var contents: Contents? {
         didSet {
             guard let contents else { journeys = nil; return }
@@ -47,6 +57,8 @@ class JourneysViewController: NSViewController {
         }
     }
     
+    //---------------------------------------------------------------------
+    /// Set the output folder label to a friendly name - with tooltip as its proper path
     private func showOutputFolder () {
         
         guard let url = UserDefaults.standard.outputURL, url.isFileURL else {
@@ -63,6 +75,8 @@ class JourneysViewController: NSViewController {
         outputFolderLabel.toolTip = path
     }
     
+    //---------------------------------------------------------------------
+    /// Handler for NextJourneyNotify observer - select the next video
     private func selectNext () {
         if journeysTableView.selectedRow >= journeysTableView.numberOfRows - 1 { return }
         let newRow = journeysTableView.selectedRow + 1
@@ -71,20 +85,27 @@ class JourneysViewController: NSViewController {
         
     }
     
+    //---------------------------------------------------------------------
+    /// Handler for PrevJourneyNotify observer - select the previous video
     private func selectPrev () {
         if journeysTableView.selectedRow == 0 { return }
         let newRow = journeysTableView.selectedRow - 1
         journeysTableView.selectRowIndexes([newRow], byExtendingSelection: false)
         journeysTableView.scrollRowToVisible(newRow)
     }
-        
+    
+    //---------------------------------------------------------------------
+    /// Delete a journey
+    /// - Parameter journey: The journey to delete
     private func deleteJourney (_ journey: Journey) {
         guard let contents else { return }
         
         do {
             do {
+                // Try to delete the journey's videos.
                 try contents.deleteVideoFilesForJourney(journey, includeLocked: false)
             } catch CocoaError.fileWriteNoPermission {
+                // If this fails because a video is locked, give the user the option to delete anyway
                 let alert = NSAlert()
                 alert.messageText = "Warning"
                 alert.informativeText = "Some of the video files in the journey are locked"
@@ -98,6 +119,7 @@ class JourneysViewController: NSViewController {
                 default: throw CocoaError (.fileWriteNoPermission)
                 }
             }
+            // We've deleted the files - so remove the journey from our array
             journeys?.removeAll(where:) { arrayJourney in arrayJourney === journey }
             journeysTableView.reloadData()
         }
@@ -106,6 +128,9 @@ class JourneysViewController: NSViewController {
         }
     }
     
+    //---------------------------------------------------------------------
+    /// The output folder button was clicked.  Allow the user to chose a new output folder
+    /// - Parameter sender: The button
     @IBAction func outputFolderButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel ()
         
