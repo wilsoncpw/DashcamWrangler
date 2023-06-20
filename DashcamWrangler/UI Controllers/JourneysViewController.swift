@@ -139,6 +139,7 @@ class JourneysViewController: NSViewController {
         openPanel.allowsMultipleSelection = false
         openPanel.resolvesAliases = true
         openPanel.directoryURL = UserDefaults.standard.outputURL
+        openPanel.canCreateDirectories = true
         
         if openPanel.runModal()  == .OK {
             if let url = openPanel.url {
