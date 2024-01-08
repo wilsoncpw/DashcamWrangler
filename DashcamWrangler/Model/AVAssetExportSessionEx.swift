@@ -36,15 +36,20 @@ class AVAssetExportSessionEx {
     private let journey: Journey
     private (set) var error: Error?
     dynamic private (set) var progress : Float = 0
+    
+    private var videoCompleted = false
+    private var audioCompleted = false
 
-    
-    
     init (asset: AVAsset, journey: Journey) {
         self.asset = asset
         self.journey = journey
     }
     
     public func export() async {
+        
+        videoCompleted = false
+        audioCompleted = false
+
         do {
             guard let outputURL = outputURL, let outputFileType = outputFileType else {
                 throw AVAssetExportSessionExError.outputNotSet
@@ -76,20 +81,22 @@ class AVAssetExportSessionEx {
             writer.startWriting()
             reader.startReading()
             writer.startSession(atSourceTime: timeRange.start)
-            var videoCompleted = false
-            var audioCompleted = false
             
             let inputQueue = DispatchQueue (label: "VideoEncoderInputQueue")
             
             await withCheckedContinuation { continuation in
+              
+                
                 if let videoInput = vi, let videoOutput = vo {
                     
                     // requestMediaDataWhenReady is fucking weird.  It continues to call the callback whenever it feels like - until the callback calls  input.markAsFinsihed
                     // We don't know whether the audio or video input will finish first, but we are done when both are complete
-                    videoInput.requestMediaDataWhenReady(on: inputQueue) {
+                    videoInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
                         
-                        if !self.encodeReadySamplesFromOutput (duration: duration, reader: reader, writer: writer, output: videoOutput, input: videoInput) {
-                            self.synchronized(lock: self) {
+                        print ("Got video")
+                        if !encodeReadySamplesFromOutput (duration: duration, reader: reader, writer: writer, output: videoOutput, input: videoInput) {
+                            print ("Video done")
+                            synchronized(lock: self) {
                                 videoCompleted = true
                                 if audioCompleted {
                                     continuation.resume()
@@ -100,9 +107,13 @@ class AVAssetExportSessionEx {
                 } else { videoCompleted = true }
                 
                 if let audioInput = ai, let audioOutput = ao {
-                    audioInput.requestMediaDataWhenReady(on: inputQueue) {
-                        if !self.encodeReadySamplesFromOutput(duration: duration, reader: reader, writer: writer,output: audioOutput, input: audioInput) {
-                            self.synchronized(lock: self) {
+                    audioInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
+                        print ("Got audio")
+                        if !encodeReadySamplesFromOutput(duration: duration, reader: reader, writer: writer,output: audioOutput, input: audioInput) {
+                            
+                            print ("Audio done")
+ 
+                            synchronized(lock: self) {
                                 audioCompleted = true
                                 if videoCompleted  {
                                     continuation.resume()
@@ -111,7 +122,7 @@ class AVAssetExportSessionEx {
                         }
                     }
                 } else {
-                    audioCompleted = true
+                     audioCompleted = true
                     
                 }
             }
