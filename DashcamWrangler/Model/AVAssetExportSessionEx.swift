@@ -37,18 +37,12 @@ class AVAssetExportSessionEx {
     private (set) var error: Error?
     dynamic private (set) var progress : Float = 0
     
-    private var videoCompleted = false
-    private var audioCompleted = false
-
     init (asset: AVAsset, journey: Journey) {
         self.asset = asset
         self.journey = journey
     }
     
     public func export() async {
-        
-        videoCompleted = false
-        audioCompleted = false
 
         do {
             guard let outputURL = outputURL, let outputFileType = outputFileType else {
@@ -63,12 +57,9 @@ class AVAssetExportSessionEx {
 //            writer.shouldOptimizeForNetworkUse = shouldOptimizeForNetworkUse
             writer.metadata = try await asset.load (.metadata)
             
-            let duration: CMTime
-            if CMTIME_IS_VALID(timeRange.duration) && !CMTIME_IS_POSITIVEINFINITY(self.timeRange.duration) {
-                duration = timeRange.duration
-            } else {
-                duration = try await asset.load(.duration)
-            }
+            let duration: CMTime = CMTIME_IS_VALID(timeRange.duration) && !CMTIME_IS_POSITIVEINFINITY(self.timeRange.duration)
+                ? timeRange.duration
+                : try await asset.load(.duration)
                         
             var ai: AVAssetWriterInput?
             var ao: AVAssetReaderOutput?
@@ -78,100 +69,56 @@ class AVAssetExportSessionEx {
             try await setupVideoIO(asset: asset, duration: duration, reader: reader, writer: writer, vi: &vi, vo: &vo)
             try await setupAudioIO(asset: asset, duration: duration, reader: reader, writer: writer, ai: &ai, ao: &ao)
             
+            let videoInput = vi
+            let videoOutput = vo
+            
+            let audioInput = ai
+            let audioOutput = ao
+            
             writer.startWriting()
             reader.startReading()
             writer.startSession(atSourceTime: timeRange.start)
             
             let inputQueue = DispatchQueue (label: "VideoEncoderInputQueue")
             
-            await withCheckedContinuation { continuation in
-              
+            async let video: Void = withCheckedContinuation { continuation in
                 
-                if let videoInput = vi, let videoOutput = vo {
+                if let videoInput, let videoOutput {
                     
                     // requestMediaDataWhenReady is fucking weird.  It continues to call the callback whenever it feels like - until the callback calls  input.markAsFinsihed
                     // We don't know whether the audio or video input will finish first, but we are done when both are complete
                     videoInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
                         
-                        print ("Got video")
                         if !encodeReadySamplesFromOutput (duration: duration, reader: reader, writer: writer, output: videoOutput, input: videoInput) {
-                            print ("Video done")
-                            synchronized(lock: self) {
-                                videoCompleted = true
-                                if audioCompleted {
-                                    continuation.resume()
-                                }
-                            }
+                            continuation.resume() // Video done!
                         }
                     }
-                } else { videoCompleted = true }
-                
-                if let audioInput = ai, let audioOutput = ao {
-                    audioInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
-                        print ("Got audio")
-                        if !encodeReadySamplesFromOutput(duration: duration, reader: reader, writer: writer,output: audioOutput, input: audioInput) {
-                            
-                            print ("Audio done")
- 
-                            synchronized(lock: self) {
-                                audioCompleted = true
-                                if videoCompleted  {
-                                    continuation.resume()
-                                }
-                            }
-                        }
-                    }
-                } else {
-                     audioCompleted = true
-                    
-                }
+                } else { continuation.resume() } // No video
             }
             
-            finish(reader: reader, writer: writer)
+            async let audio: Void = withCheckedContinuation { continuation in
+                
+                if let audioInput, let audioOutput {
+                    audioInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
+                        if !encodeReadySamplesFromOutput(duration: duration, reader: reader, writer: writer,output: audioOutput, input: audioInput) {
+                            continuation.resume() // Audio done!
+                        }
+                    }
+                } else { continuation.resume() } // No audio
+            }
             
- 
+            let _ = await (video, audio) // Wait for video & audio to complete
+            
+            if reader.status == .failed { writer.cancelWriting() }
+            if writer.status == .failed || writer.status == .cancelled {
+                try FileManager.default.removeItem(at: outputURL)
+            } else {
+                writer.finishWriting {}
+            }
         } catch let e {
             self.error = e
         }
-        
     }
-    
-    private func synchronized( lock:AnyObject, block:() throws -> Void ) rethrows
-    {
-        objc_sync_enter(lock)
-        defer {
-            objc_sync_exit(lock)
-        }
-
-        try block()
-    }
-    
-    private func finish (reader: AVAssetReader, writer: AVAssetWriter) {
-        if reader.status == .cancelled || writer.status == .cancelled {
-            return
-        }
-        
-        if writer.status == .failed {
-            complete (writer: writer)
-        } else if reader.status == .failed {
-            writer.cancelWriting()
-            complete (writer: writer)
-        } else {
-            writer.finishWriting {
-                self.complete (writer: writer)
-            }
-        }
-    }
-    
-    private func complete (writer: AVAssetWriter) {
-        if writer.status == .failed || writer.status == .cancelled {
-            do {
-                try FileManager.default.removeItem(at: outputURL!)
-            } catch {
-            }
-        }
-    }
-    
     
     private func setupVideoIO (asset: AVAsset, duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, vi: inout AVAssetWriterInput?, vo: inout AVAssetReaderOutput?) async throws {
         let passthrough = videoSettings == nil
