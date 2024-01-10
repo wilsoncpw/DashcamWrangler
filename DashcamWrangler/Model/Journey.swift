@@ -13,42 +13,31 @@ protocol ProgressSource {
     var error: Error? { get }
 }
 
-extension AVAssetExportSession: ProgressSource {
-}
-
-extension AVAssetExportSessionEx: ProgressSource {
-}
-
-protocol ExportSessionDelegate: NSObjectProtocol {
-    func mergeDone (session: ProgressSource)
-    func mergeStarted (session: ProgressSource)
-    var mergeDelegate : MergeDelegate? { get set }
-    var progress: Double { get }
-}
-
 protocol MergeDelegate: NSObjectProtocol {
     func mergeStart ()
     func mergeProgress (progress: Double)
     func mergeDone ()
 }
 
+
+//=====================================================================================
+/// Journey class
 class Journey {
     let videos : [Video]
     let creationDate: Date
-
-    var task: Task<(), Never>?
-    private var exportSessionDelegate: ExportSessionDelegate?
+    var task: Task<Void, Never>?
+ 
+    private var exportController: ExportController?
     
     var mergeDelegate: MergeDelegate? {
-        didSet { exportSessionDelegate?.mergeDelegate = mergeDelegate }
+        didSet { exportController?.mergeDelegate = mergeDelegate }
     }
     
-    var mergeProgress: Double? {
-        return exportSessionDelegate?.progress
-    }
+    var mergeProgress: Double? { return exportController?.progress }
+    var taskIsCancelled: Bool { return task?.isCancelled ?? true }
+    var isMerging: Bool { return exportController != nil }
     
-    var isMerging: Bool { return exportSessionDelegate != nil }
-
+    /// The journey name
     var name: String? {
         get {
             guard videos.count > 0 else { return nil }
@@ -65,16 +54,27 @@ class Journey {
             }
         }
     }
-        
+    
+    //---------------------------------------------------------------------------------
+    /// Init
+    /// - Parameters:
+    ///   - videos: The journey videos
+    ///   - creationDate: The creation date
     init (videos: [Video], creationDate: Date) {
         self.videos = videos
         self.creationDate = creationDate
     }
     
+    //---------------------------------------------------------------------------------
+   /// getThumbnail
+    /// - Returns: The thumbnail
     func getThumbnail () async throws -> CGImage {
         return try videos [0].getThumbnail ()
     }
     
+    //---------------------------------------------------------------------------------
+    /// getDuration bu adding each video's duration value
+    /// - Returns: The journey duration
     func getDuration () async throws -> CMTime {
         var duration = CMTime.zero
         
@@ -87,7 +87,10 @@ class Journey {
         return duration
     }
     
-    func getMergedName (resampled: Bool) -> String {
+    //---------------------------------------------------------------------------------
+    /// getMergedName
+    /// - Returns: The file name of the merged journey
+    func getMergedName () -> String {
         let ext = ".mp4"
         let st : String
         let firstDate = creationDate
@@ -98,7 +101,7 @@ class Journey {
             st = dateFormatter.string(from: firstDate) + " " + name
         } else {
             dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
-            st = dateFormatter.string(from: firstDate) + (resampled ? " Resampled" : " Joined")
+            st = dateFormatter.string(from: firstDate) + " Joined"
         }
        
         return st + ext
@@ -109,6 +112,9 @@ class Journey {
         case noVideoTracks
     }
     
+    //---------------------------------------------------------------------------------
+    /// getMergedComposition
+    /// - Returns: AVComposition of all the videos in the journey
     func getMergedComposition () async throws -> AVComposition {
         let composition = AVMutableComposition ()
          
@@ -139,24 +145,9 @@ class Journey {
         return composition
     }
     
-    func merge(intoURL url: URL, withPreset presetName: String) async throws {
-
-        let asset = try await getMergedComposition()
-        guard let exportSession = AVAssetExportSession (asset: asset, presetName: presetName) else {
-            return
-        }
-
-        exportSession.outputURL = url
-        exportSession.outputFileType = AVFileType.mp4
-        
-        try? FileManager.default.removeItem(at: url)
-
-        await MainActor.run { exportSessionDelegate?.mergeStarted(session: exportSession) }
-        await exportSession.export()
-        await MainActor.run { exportSessionDelegate?.mergeDone(session: exportSession) }
-
-    }
-    
+    //---------------------------------------------------------------------------------
+    /// Join - Create merged composition & export it to the URL - resampled to hevc format
+    /// - Parameter url: The URL to export to
     func join(intoURL url: URL) async throws {
 
         let asset = try await getMergedComposition()
@@ -173,15 +164,17 @@ class Journey {
             AVVideoHeightKey:height
         ]
         
+        // Remove previpus file with the same name
         try? FileManager.default.removeItem(at: url)
         
-        exportSessionDelegate = ExportController ()
-        exportSessionDelegate?.mergeDelegate = mergeDelegate
-        await MainActor.run { exportSessionDelegate?.mergeStarted(session: exportSession) }
+        // Create an export controller to handle progress on the mergeDelegate
+        exportController = ExportController ()
+        exportController?.mergeDelegate = mergeDelegate
+        await MainActor.run { exportController?.mergeStarted(session: exportSession) }
         
         await exportSession.export()
-        await MainActor.run { exportSessionDelegate?.mergeDone(session: exportSession) }
-        exportSessionDelegate = nil
+        await MainActor.run { exportController?.mergeDone(session: exportSession) }
+        exportController = nil
 
     }
 }

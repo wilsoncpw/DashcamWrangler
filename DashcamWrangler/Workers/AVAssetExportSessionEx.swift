@@ -10,21 +10,18 @@ import AVKit
 
 enum AVAssetExportSessionExError: Error {
     case outputNotSet
-    case widthNotSet
-    case heightNotSet
 }
 
 extension AVAssetExportSessionExError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .outputNotSet: return "Output URL not set"
-        case .widthNotSet: return "Width not set"
-        case .heightNotSet: return "Height not set"
         }
     }
 }
 
-class AVAssetExportSessionEx {
+/// Class to export
+class AVAssetExportSessionEx : ProgressSource {
     public var outputURL: URL?
     public var outputFileType : AVFileType? = AVFileType.mp4
     public var timeRange = CMTimeRange (start: .zero, duration: .positiveInfinity)
@@ -54,13 +51,13 @@ class AVAssetExportSessionEx {
             
             reader.timeRange = timeRange
             
-//            writer.shouldOptimizeForNetworkUse = shouldOptimizeForNetworkUse
+            //            writer.shouldOptimizeForNetworkUse = shouldOptimizeForNetworkUse
             writer.metadata = try await asset.load (.metadata)
             
             let duration: CMTime = CMTIME_IS_VALID(timeRange.duration) && !CMTIME_IS_POSITIVEINFINITY(self.timeRange.duration)
-                ? timeRange.duration
-                : try await asset.load(.duration)
-                        
+            ? timeRange.duration
+            : try await asset.load(.duration)
+            
             var ai: AVAssetWriterInput?
             var ao: AVAssetReaderOutput?
             var vo: AVAssetReaderOutput?
@@ -87,7 +84,9 @@ class AVAssetExportSessionEx {
                     
                     // requestMediaDataWhenReady is fucking weird.  It continues to call the callback whenever it feels like - until the callback calls  input.markAsFinsihed
                     // We don't know whether the audio or video input will finish first, but we are done when both are complete
+                    
                     videoInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
+                        
                         
                         if !encodeReadySamplesFromOutput (duration: duration, reader: reader, writer: writer, output: videoOutput, input: videoInput) {
                             continuation.resume() // Video done!
@@ -107,8 +106,9 @@ class AVAssetExportSessionEx {
                 } else { continuation.resume() } // No audio
             }
             
-            let _ = await (video, audio) // Wait for video & audio to complete
             
+            let _ = await (video, audio) // Wait for video & audio to complete
+
             if reader.status == .failed { writer.cancelWriting() }
             if writer.status == .failed || writer.status == .cancelled {
                 try FileManager.default.removeItem(at: outputURL)
@@ -202,7 +202,7 @@ class AVAssetExportSessionEx {
     
     private func encodeReadySamplesFromOutput (duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, output: AVAssetReaderOutput, input: AVAssetWriterInput) -> Bool {
         while input.isReadyForMoreMediaData {
-            guard let sampleBuffer = output.copyNextSampleBuffer(), !(journey.task?.isCancelled ?? true) else {
+            guard let sampleBuffer = output.copyNextSampleBuffer(), !journey.taskIsCancelled else {
                 input.markAsFinished()
                 return false
             }

@@ -80,8 +80,9 @@
 		AA7711902A0123FB00CAE059 /* DashcamWrangler */ = {
 			isa = PBXGroup;
 			children = (
-				AA7711AF2A0172F500CAE059 /* Extensions */,
 				AA7711A02A01255300CAE059 /* Model */,
+				AA9124C62B4D6696003ACCDE /* Workers */,
+				AA7711AF2A0172F500CAE059 /* Extensions */,
 				AA7711AD2A0172B700CAE059 /* UI Controllers */,
 				AA7711AE2A0172D900CAE059 /* Views */,
 				AA7711912A0123FB00CAE059 /* AppDelegate.swift */,
@@ -97,9 +98,7 @@
 			children = (
 				AA7711A12A01256700CAE059 /* Contents.swift */,
 				AA7711A32A01259400CAE059 /* Journey.swift */,
-				AAF17CCE2A03248200F44ABE /* AVAssetExportSessionEx.swift */,
 				AA7711A52A0125D100CAE059 /* Video.swift */,
-				AA2020A12A3D22B7009EF171 /* ExportController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +132,15 @@
 				AA1AA3192A18398000C563D7 /* URLExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AA9124C62B4D6696003ACCDE /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				AA2020A12A3D22B7009EF171 /* ExportController.swift */,
+				AAF17CCE2A03248200F44ABE /* AVAssetExportSessionEx.swift */,
+			);
+			path = Workers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,7 +373,7 @@
 				CODE_SIGN_ENTITLEMENTS = DashcamWrangler/DashcamWrangler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -378,7 +386,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinwilson.DashcamWrangler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -394,7 +402,7 @@
 				CODE_SIGN_ENTITLEMENTS = DashcamWrangler/DashcamWrangler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -407,7 +415,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinwilson.DashcamWrangler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

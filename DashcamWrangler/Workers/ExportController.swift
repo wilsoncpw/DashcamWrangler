@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ExportController: NSObject, ExportSessionDelegate {
+class ExportController: NSObject {
     
     var mergeDelegate: MergeDelegate?
     private(set) var progress: Double = 0

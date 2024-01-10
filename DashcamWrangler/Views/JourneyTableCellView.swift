@@ -24,7 +24,7 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
             
             journey.mergeDelegate = self
             
-            nameLabel.stringValue = journey.getMergedName(resampled: false)
+            nameLabel.stringValue = journey.getMergedName()
             noVideosLabel.stringValue = "\(journey.videos.count) \(journey.videos.count == 1 ? "clip" : "clips")"
             nameTextField.stringValue = journey.name ?? ""
             
@@ -64,7 +64,7 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
 
         if journey.task == nil {
             let url = UserDefaults.standard.outputURL
-            let name = journey.getMergedName(resampled: false)
+            let name = journey.getMergedName()
             let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
             let fileUrl = fileUrlx.resolvingSymlinksInPath()
             
@@ -125,7 +125,7 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
         }
         journey.name = st
         
-        nameLabel.stringValue = journey.getMergedName(resampled: false)
+        nameLabel.stringValue = journey.getMergedName()
     }
     
 }
