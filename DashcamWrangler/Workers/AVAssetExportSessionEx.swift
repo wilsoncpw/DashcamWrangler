@@ -20,10 +20,11 @@ extension AVAssetExportSessionExError: LocalizedError {
     }
 }
 
-/// Class to export
+///=====================================================================================
+// Class to export an ACAsset of a journey
 class AVAssetExportSessionEx : ProgressSource {
-    public var outputURL: URL?
-    public var outputFileType : AVFileType? = AVFileType.mp4
+    public var outputURL: URL?                                  // Must be set before export
+    public var outputFileType : AVFileType? = AVFileType.mp4    //  "           "
     public var timeRange = CMTimeRange (start: .zero, duration: .positiveInfinity)
     public var videoSettings: [String:Any]? = nil
     public var audioSettings: [String:Any]? = nil
@@ -34,41 +35,47 @@ class AVAssetExportSessionEx : ProgressSource {
     private (set) var error: Error?
     dynamic private (set) var progress : Float = 0
     
+    //---------------------------------------------------------------------------------
+    /// Constructor
+    /// - Parameters:
+    ///   - asset: The merged composition AV Asset
+    ///   - journey: The journey
     init (asset: AVAsset, journey: Journey) {
         self.asset = asset
         self.journey = journey
     }
     
+    //---------------------------------------------------------------------------------
+    /// Export the asset to the outputURL
     public func export() async {
 
         do {
+            // Ensure the prereqs have been set
             guard let outputURL = outputURL, let outputFileType = outputFileType else {
                 throw AVAssetExportSessionExError.outputNotSet
             }
             
+            // Create & initialise the reader & writer
             let reader = try AVAssetReader (asset: asset)
             let writer = try AVAssetWriter (outputURL: outputURL, fileType: outputFileType)
-            
-            reader.timeRange = timeRange
-            
-            //            writer.shouldOptimizeForNetworkUse = shouldOptimizeForNetworkUse
             writer.metadata = try await asset.load (.metadata)
-            
+            reader.timeRange = timeRange // The time range to export.  Defaults to 0..~ but can be overriden
+                        
+            // Calculate the duration - either from the time range if its been set, or loaded from the asset
             let duration: CMTime = CMTIME_IS_VALID(timeRange.duration) && !CMTIME_IS_POSITIVEINFINITY(self.timeRange.duration)
             ? timeRange.duration
             : try await asset.load(.duration)
             
-            var ai: AVAssetWriterInput?
-            var ao: AVAssetReaderOutput?
+            var ai: AVAssetWriterInput?     // Note that the Inputs write to the writer, and the Outputs read from the reader
+            var ao: AVAssetReaderOutput?    // which is arse about face to my way of thinking!
             var vo: AVAssetReaderOutput?
             var vi: AVAssetWriterInput?
             
-            try await setupVideoIO(asset: asset, duration: duration, reader: reader, writer: writer, vi: &vi, vo: &vo)
-            try await setupAudioIO(asset: asset, duration: duration, reader: reader, writer: writer, ai: &ai, ao: &ao)
+            try await setupVideoIO(duration: duration, reader: reader, writer: writer, vi: &vi, vo: &vo)
+            try await setupAudioIO(duration: duration, reader: reader, writer: writer, ai: &ai, ao: &ao)
             
-            let videoInput = vi
+            let videoInput = vi // 'Capture' in continuation beloiw requires immutable inputs & outputs
             let videoOutput = vo
-            
             let audioInput = ai
             let audioOutput = ao
             
@@ -76,8 +83,10 @@ class AVAssetExportSessionEx : ProgressSource {
             reader.startReading()
             writer.startSession(atSourceTime: timeRange.start)
             
-            let inputQueue = DispatchQueue (label: "VideoEncoderInputQueue")
+            let videoInputQueue = DispatchQueue (label: "VideoEncoderInputQueue")
+            let audioInputQueue = DispatchQueue (label: "AudioEncoderInputQueue")
             
+            // Create continuation for video
             async let video: Void = withCheckedContinuation { continuation in
                 
                 if let videoInput, let videoOutput {
@@ -85,21 +94,23 @@ class AVAssetExportSessionEx : ProgressSource {
                     // requestMediaDataWhenReady is fucking weird.  It continues to call the callback whenever it feels like - until the callback calls  input.markAsFinsihed
                     // We don't know whether the audio or video input will finish first, but we are done when both are complete
                     
-                    videoInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
-                        
+                    videoInput.requestMediaDataWhenReady(on: videoInputQueue) { [self] in
                         
                         if !encodeReadySamplesFromOutput (duration: duration, reader: reader, writer: writer, output: videoOutput, input: videoInput) {
+                            videoInput.markAsFinished()
                             continuation.resume() // Video done!
                         }
                     }
                 } else { continuation.resume() } // No video
             }
             
+            // Create continuation for audio
             async let audio: Void = withCheckedContinuation { continuation in
                 
                 if let audioInput, let audioOutput {
-                    audioInput.requestMediaDataWhenReady(on: inputQueue) { [self] in
+                    audioInput.requestMediaDataWhenReady(on: audioInputQueue) { [self] in
                         if !encodeReadySamplesFromOutput(duration: duration, reader: reader, writer: writer,output: audioOutput, input: audioInput) {
+                            audioInput.markAsFinished()
                             continuation.resume() // Audio done!
                         }
                     }
@@ -109,9 +120,8 @@ class AVAssetExportSessionEx : ProgressSource {
             
             let _ = await (video, audio) // Wait for video & audio to complete
 
-            if reader.status == .failed { writer.cancelWriting() }
-            if writer.status == .failed || writer.status == .cancelled {
-                try FileManager.default.removeItem(at: outputURL)
+            if reader.status == .failed || reader.status == .cancelled {
+                writer.cancelWriting()  // Cancel writer if reader failed or was cancelled - which deletes the output file
             } else {
                 writer.finishWriting {}
             }
@@ -120,14 +130,24 @@ class AVAssetExportSessionEx : ProgressSource {
         }
     }
     
-    private func setupVideoIO (asset: AVAsset, duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, vi: inout AVAssetWriterInput?, vo: inout AVAssetReaderOutput?) async throws {
+    //---------------------------------------------------------------------------------
+    /// setupVideoIO.  Initialise the reader & writer, and create the input and output
+    /// - Parameters:
+    ///   - duration: Video duration
+    ///   - reader: The reader
+    ///   - writer: The writer
+    ///   - vi: The input
+    ///   - vo: The output
+    private func setupVideoIO (duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, vi: inout AVAssetWriterInput?, vo: inout AVAssetReaderOutput?) async throws {
         let passthrough = videoSettings == nil
         let videoTracks = try await asset.loadTracks(withMediaType: .video)
         if videoTracks.count > 0 {
             
-            if passthrough {
+            if passthrough && framerate == nil {
+                // Create standard output
                 vo = AVAssetReaderTrackOutput (track: videoTracks[0], outputSettings: nil)
             } else {
+                // Create output from custom composition
                 let videoOutput = AVAssetReaderVideoCompositionOutput (videoTracks: videoTracks, videoSettings: nil)
                 
                 let videoComposition = try await buildDefaultVideoComposition(videoTrack: videoTracks [0], duration: duration)
@@ -136,7 +156,7 @@ class AVAssetExportSessionEx : ProgressSource {
             }
             
             if let videoOutput = vo {
-                videoOutput.alwaysCopiesSampleData = false
+                videoOutput.alwaysCopiesSampleData = false // Improves performance
                 
                 if reader.canAdd(videoOutput) {
                     reader.add(videoOutput)
@@ -144,6 +164,7 @@ class AVAssetExportSessionEx : ProgressSource {
             }
             
             if passthrough {
+                // Create input using the original format description
                 let formatDescriptions = try await videoTracks[0].load(.formatDescriptions)
                 let vd1 = formatDescriptions[0]
                 vi = AVAssetWriterInput (mediaType: .video, outputSettings: nil, sourceFormatHint: vd1)
@@ -160,7 +181,15 @@ class AVAssetExportSessionEx : ProgressSource {
         }
     }
     
-    private func setupAudioIO (asset: AVAsset, duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, ai: inout AVAssetWriterInput?, ao: inout AVAssetReaderOutput?) async throws {
+    //---------------------------------------------------------------------------------
+    /// setupAudioIO.  Initialise the reader & writer and create the input & output
+    /// - Parameters:
+    ///   - duration: The video duration
+    ///   - reader: The reader
+    ///   - writer: The writer
+    ///   - ai: The inout
+    ///   - ao: The output
+    private func setupAudioIO (duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, ai: inout AVAssetWriterInput?, ao: inout AVAssetReaderOutput?) async throws {
         let passthrough = audioSettings == nil
         let audioTracks = try await asset.loadTracks(withMediaType: .audio)
          if audioTracks.count > 0 {
@@ -200,10 +229,25 @@ class AVAssetExportSessionEx : ProgressSource {
     }
 
     
+    //---------------------------------------------------------------------------------
+    /// Get completed sampes from the output, and append them to the input
+    /// - Parameters:
+    ///   - duration: The video duration
+    ///   - reader: The reader
+    ///   - writer: The writer
+    ///   - output: The output
+    ///   - input: The inout
+    /// - Returns: False if there's no more data to encode, or if an error occured, or if the join was cancelled
     private func encodeReadySamplesFromOutput (duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, output: AVAssetReaderOutput, input: AVAssetWriterInput) -> Bool {
         while input.isReadyForMoreMediaData {
-            guard let sampleBuffer = output.copyNextSampleBuffer(), !journey.taskIsCancelled else {
-                input.markAsFinished()
+            
+            if journey.taskIsCancelled {
+                reader.cancelReading()
+                return false
+            }
+            
+            // Get the next sample from the reader's output
+            guard let sampleBuffer = output.copyNextSampleBuffer() else {
                 return false
             }
             
@@ -215,6 +259,8 @@ class AVAssetExportSessionEx : ProgressSource {
             }
                         
             if input.mediaType == .video {
+                // Update the Progress value - which is monitored by the journey's Export Controller and fed through to the Journey's mergeDelegate
+                
                 var lastSamplePresentationTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
                 lastSamplePresentationTime = CMTimeSubtract(lastSamplePresentationTime, timeRange.start)
                 let seconds = CMTimeGetSeconds(lastSamplePresentationTime)
@@ -222,6 +268,7 @@ class AVAssetExportSessionEx : ProgressSource {
                 progress = durationSeconds == 0 ? 1 : Float (seconds / durationSeconds)
             }
             
+            // Append the sample to the writer's input.
             if !input.append(sampleBuffer) {
                 if let e = writer.error {
                     print (e.localizedDescription)
