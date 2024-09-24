@@ -13,8 +13,25 @@ class VideoViewController: NSViewController {
     @IBOutlet weak var videoView: VideoView!
     @IBOutlet weak var transportSegmentedControl: NSSegmentedControl!
     
+    var rangeStartTime: CMTime?{
+        didSet {
+            videoView.showRangeStartLine(rangeStartTime: rangeStartTime)
+            updateHasSnippet()
+        }
+    }
+    var rangeEndTime: CMTime? {
+        didSet {
+            videoView.showRangeEndLine(rangeEndTime: rangeEndTime)
+            updateHasSnippet()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+            appDelegate.videoViewController = self
+        }
         
         let _ = JourneySelectedNotify.observe { journeySelection in
             self.setVideoViewForJourney(journeySelection.journey)
@@ -38,7 +55,27 @@ class VideoViewController: NSViewController {
         }
     }
     
+    func updateHasSnippet() {
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+            appDelegate.updateHasSnippet()
+        }
+    }
+    
+    var currentJourney: Journey? {
+        didSet {
+            if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+                appDelegate.currentJourney = currentJourney
+            }
+        }
+    }
+    
     func setVideoViewForJourney(_ journey: Journey) {
+        
+        currentJourney = journey
+        
+        rangeStartTime = nil
+        rangeEndTime = nil
+        
         Task.init {
             do {
                 let composition = try await journey.getMergedComposition()
@@ -81,6 +118,33 @@ class VideoViewController: NSViewController {
         case 1: if isPaused { videoView.videoPlayer.play() } else { videoView.videoPlayer.pause() }
         case 2: NextJourneyNotify ().post()
         default: break
+        }
+    }
+    
+    func setRangeStart() {
+        rangeStartTime = videoView?.videoPlayer.currentTime()
+    }
+    
+    func setRangeEnd() {
+        rangeEndTime = videoView?.videoPlayer.currentTime()
+    }
+    
+    var joinTask: Task<Void, Never>?
+    
+    func saveSnippet() {
+        guard let rangeStartTime, let rangeEndTime, let journey = currentJourney, rangeStartTime < rangeEndTime, joinTask == nil else { return }
+        
+        let savePanel = NSSavePanel ()
+        savePanel.nameFieldStringValue = journey.getMergedName(isSnippet: true)
+        if savePanel.runModal() == .OK, let url = savePanel.url {
+            joinTask = Task.init {
+                do {
+                  
+                    try await journey.join(intoURL: url, task: joinTask!, timeRange: CMTimeRange(start: rangeStartTime, end: rangeEndTime))
+                    joinTask = nil
+                } catch {
+                }
+            }
         }
     }
     

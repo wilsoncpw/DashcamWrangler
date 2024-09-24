@@ -32,17 +32,19 @@ class AVAssetExportSessionEx : ProgressSource {
     
     private  let asset: AVAsset
     private let journey: Journey
-    private (set) var error: Error?
-    dynamic private (set) var progress : Float = 0
+    private let task: Task<Void, Never>
+    private(set) var error: Error?
+    dynamic private(set) var progress : Float = 0
     
     //---------------------------------------------------------------------------------
     /// Constructor
     /// - Parameters:
     ///   - asset: The merged composition AV Asset
     ///   - journey: The journey
-    init (asset: AVAsset, journey: Journey) {
+    init (asset: AVAsset, journey: Journey, task: Task<Void, Never>) {
         self.asset = asset
         self.journey = journey
+        self.task = task
     }
     
     //---------------------------------------------------------------------------------
@@ -62,17 +64,24 @@ class AVAssetExportSessionEx : ProgressSource {
             reader.timeRange = timeRange // The time range to export.  Defaults to 0..~ but can be overriden
                         
             // Calculate the duration - either from the time range if its been set, or loaded from the asset
-            let duration: CMTime = CMTIME_IS_VALID(timeRange.duration) && !CMTIME_IS_POSITIVEINFINITY(self.timeRange.duration)
-            ? timeRange.duration
-            : try await asset.load(.duration)
+            let duration: CMTime
+            let videoDuration: CMTime
+            
+            if CMTIME_IS_VALID(timeRange.duration) && !CMTIME_IS_POSITIVEINFINITY(self.timeRange.duration) {
+                duration = CMTime (seconds: 10, preferredTimescale: 30000)
+                videoDuration = try await asset.load(.duration)
+            } else {
+                duration = try await asset.load(.duration)
+                videoDuration = duration
+            }
             
             var ai: AVAssetWriterInput?     // Note that the Inputs write to the writer, and the Outputs read from the reader
             var ao: AVAssetReaderOutput?    // which is arse about face to my way of thinking!
             var vo: AVAssetReaderOutput?
             var vi: AVAssetWriterInput?
             
-            try await setupVideoIO(duration: duration, reader: reader, writer: writer, vi: &vi, vo: &vo)
-            try await setupAudioIO(duration: duration, reader: reader, writer: writer, ai: &ai, ao: &ao)
+            try await setupVideoIO(duration: videoDuration, reader: reader, writer: writer, vi: &vi, vo: &vo)
+            try await setupAudioIO(duration: videoDuration, reader: reader, writer: writer, ai: &ai, ao: &ao)
             
             let videoInput = vi // 'Capture' in continuation beloiw requires immutable inputs & outputs
             let videoOutput = vo
@@ -119,8 +128,11 @@ class AVAssetExportSessionEx : ProgressSource {
             
             
             let _ = await (video, audio) // Wait for video & audio to complete
-
-            if reader.status == .failed || reader.status == .cancelled {
+            
+            if reader.status == .failed {
+                print ("\(reader.error)")
+                writer.cancelWriting ()
+            } else if reader.status == .cancelled {
                 writer.cancelWriting()  // Cancel writer if reader failed or was cancelled - which deletes the output file
             } else {
                 writer.finishWriting {}
@@ -241,7 +253,7 @@ class AVAssetExportSessionEx : ProgressSource {
     private func encodeReadySamplesFromOutput (duration: CMTime, reader: AVAssetReader, writer: AVAssetWriter, output: AVAssetReaderOutput, input: AVAssetWriterInput) -> Bool {
         while input.isReadyForMoreMediaData {
             
-            if journey.taskIsCancelled {
+            if task.isCancelled {
                 reader.cancelReading()
                 return false
             }

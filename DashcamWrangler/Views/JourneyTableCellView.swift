@@ -57,28 +57,29 @@ class JourneyTableCellView: NSTableCellView, MergeDelegate {
         }
     }
     
+    var joinTask: Task<Void, Never>?
+    
    
     @IBAction func joinButtonClicked(_ sender: Any) {
        
         guard let journey = objectValue as? Journey else { return }
 
-        if journey.task == nil {
-            let url = UserDefaults.standard.outputURL
-            let name = journey.getMergedName()
-            let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
-            let fileUrl = fileUrlx.resolvingSymlinksInPath()
-            
-            
-            journey.task = Task.init {
+        let url = UserDefaults.standard.outputURL
+        let name = journey.getMergedName()
+        let fileUrlx = URL (fileURLWithPath: name, relativeTo: url)
+        let fileUrl = fileUrlx.resolvingSymlinksInPath()
+        
+        
+        if joinTask == nil {
+            joinTask = Task.init {
                 do {
-                    //              try await journey.merge(intoURL: fileUrl, withPreset: /*AVAssetExportPresetPassthrough*/ AVAssetExportPresetHEVC1920x1080, delegate: self)
-                    try await journey.join(intoURL: fileUrl)
-                    journey.task = nil
+                    try await journey.join(intoURL: fileUrl, task: joinTask!)
+                    joinTask = nil
                 } catch {
                 }
             }
         } else {
-            journey.task!.cancel()
+            joinTask?.cancel()
         }
     }
     

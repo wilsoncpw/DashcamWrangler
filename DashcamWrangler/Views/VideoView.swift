@@ -25,7 +25,9 @@ class VideoView: NSView, CALayerDelegate {
     private let viewLayer = CALayer ()
     private let videoPlayerLayer = AVPlayerLayer ()
     private let lineLayer = CAShapeLayer ()
-    
+    private let rangeStartLayer = CAShapeLayer ()
+    private let rangeEndLayer = CAShapeLayer ()
+
     private var statusObservation: NSKeyValueObservation?
     private var readyObservation: NSKeyValueObservation?
     private var timeObserver: Any?
@@ -73,6 +75,14 @@ class VideoView: NSView, CALayerDelegate {
         lineLayer.fillColor = NSColor.red.cgColor
         lineLayer.delegate = self
         videoPlayerLayer.addSublayer(lineLayer)
+        
+        rangeStartLayer.addConstraintsToFillSuperlayer(leftMargin: 0, topMargin: 0, rightMargin: 0, bottomMargin: 0)
+        rangeStartLayer.strokeColor = NSColor.blue.cgColor
+        videoPlayerLayer.addSublayer(rangeStartLayer)
+        
+        rangeEndLayer.addConstraintsToFillSuperlayer(leftMargin: 0, topMargin: 0, rightMargin: 0, bottomMargin: 0)
+        rangeEndLayer.strokeColor = NSColor.green.cgColor
+        videoPlayerLayer.addSublayer(rangeEndLayer)
         
         self.layer = viewLayer
             
@@ -248,6 +258,44 @@ class VideoView: NSView, CALayerDelegate {
         
         let targetPath = path.copy(strokingWithWidth: 5, lineCap: lineCap, lineJoin: lineJoin, miterLimit: lineLayer.miterLimit)
         self.lineTargetPath = targetPath
+    }
+    
+    func showRangeStartLine (rangeStartTime: CMTime?) {
+        guard let rangeStartTime, let videoPlayer, let maxTime = videoPlayer.currentItem?.duration.seconds, maxTime > 0 else {
+            rangeStartLayer.path = nil
+            return
+        }
+        let ratio = CGFloat (rangeStartTime.seconds / maxTime)
+        
+        let rect = videoPlayerLayer.videoRect
+        let x = 1 + rect.minX + (rect.width - 1) * ratio
+        
+        let path = CGMutablePath ()
+        path.move(to: CGPoint (x: x, y: rect.minY))
+        
+        path.addLine(to: CGPoint (x: x, y: rect.maxY))
+        path.closeSubpath()
+
+        rangeStartLayer.path = path
+    }
+    
+    func showRangeEndLine (rangeEndTime: CMTime?) {
+        guard let rangeEndTime, let videoPlayer, let maxTime = videoPlayer.currentItem?.duration.seconds, maxTime > 0 else {
+            rangeEndLayer.path = nil
+            return
+        }
+        let ratio = CGFloat (rangeEndTime.seconds / maxTime)
+        
+        let rect = videoPlayerLayer.videoRect
+        let x = 1 + rect.minX + (rect.width - 1) * ratio
+        
+        let path = CGMutablePath ()
+        path.move(to: CGPoint (x: x, y: rect.minY))
+        
+        path.addLine(to: CGPoint (x: x, y: rect.maxY))
+        path.closeSubpath()
+
+        rangeEndLayer.path = path
     }
     
     

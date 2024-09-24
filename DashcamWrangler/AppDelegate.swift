@@ -10,10 +10,22 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     var journeyViewController: JourneysViewController?
-
+    var videoViewController: VideoViewController?
+    @IBOutlet weak var setRangeStartMenuItem: NSMenuItem!
+    @IBOutlet weak var setRangeEndMenuItem: NSMenuItem!
+    @IBOutlet weak var saveSnippetMenuItem: NSMenuItem!
+    
     var contents: Contents? {
         didSet {
             journeyViewController?.contents = contents
+        }
+    }
+    
+    var currentJourney: Journey? {
+        didSet {
+            setRangeStartMenuItem.isEnabled = currentJourney != nil
+            setRangeEndMenuItem.isEnabled = currentJourney != nil
+            saveSnippetMenuItem.isEnabled = false
         }
     }
     
@@ -53,6 +65,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func updateHasSnippet () {
+        saveSnippetMenuItem.isEnabled = videoViewController?.rangeStartTime != nil && videoViewController?.rangeEndTime != nil
+    }
+    
+    @IBAction func setRangeStart (_ sender: AnyObject) {
+        videoViewController?.setRangeStart()
+    }
+    
+    @IBAction func setRangeEnd (_ sender: AnyObject) {
+        videoViewController?.setRangeEnd()
+    }
+    
+    @IBAction func saveSnippet(_ sender: Any) {
+        videoViewController?.saveSnippet()
+    }
+    
     func openFolderAtURL (_ url: URL) -> Bool {
         
         guard let contents = try? Contents (folderURL: url) else { return false }
@@ -60,6 +88,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSDocumentController.shared.noteNewRecentDocumentURL(url)
         return true
     }
+    
+ 
 
 
 }

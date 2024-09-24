@@ -373,7 +373,7 @@
 				CODE_SIGN_ENTITLEMENTS = DashcamWrangler/DashcamWrangler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -386,7 +386,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinwilson.DashcamWrangler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -402,7 +402,7 @@
 				CODE_SIGN_ENTITLEMENTS = DashcamWrangler/DashcamWrangler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 3R8CQY2XDV;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -415,7 +415,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colinwilson.DashcamWrangler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

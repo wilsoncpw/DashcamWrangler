@@ -148,7 +148,6 @@ class JourneysViewController: NSViewController {
             }
         }
     }
-    
 }
 
 extension JourneysViewController: NSTableViewDataSource {

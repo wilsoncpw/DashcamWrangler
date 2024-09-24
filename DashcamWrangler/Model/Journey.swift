@@ -25,7 +25,6 @@ protocol MergeDelegate: NSObjectProtocol {
 class Journey {
     let videos : [Video]
     let creationDate: Date
-    var task: Task<Void, Never>?
  
     private var exportController: ExportController?
     
@@ -34,7 +33,6 @@ class Journey {
     }
     
     var mergeProgress: Double? { return exportController?.progress }
-    var taskIsCancelled: Bool { return task?.isCancelled ?? true }
     var isMerging: Bool { return exportController != nil }
     
     /// The journey name
@@ -90,9 +88,9 @@ class Journey {
     //---------------------------------------------------------------------------------
     /// getMergedName
     /// - Returns: The file name of the merged journey
-    func getMergedName () -> String {
+    func getMergedName (isSnippet: Bool = false) -> String {
         let ext = ".mp4"
-        let st : String
+        var st : String
         let firstDate = creationDate
         let dateFormatter = DateFormatter ()
         
@@ -102,6 +100,10 @@ class Journey {
         } else {
             dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
             st = dateFormatter.string(from: firstDate) + " Joined"
+        }
+        
+        if isSnippet {
+            st += " Snippet"
         }
        
         return st + ext
@@ -148,10 +150,10 @@ class Journey {
     //---------------------------------------------------------------------------------
     /// Join - Create merged composition & export it to the URL - resampled to hevc format
     /// - Parameter url: The URL to export to
-    func join(intoURL url: URL) async throws {
+    func join(intoURL url: URL, task: Task<Void, Never>, timeRange: CMTimeRange? = nil) async throws {
 
         let asset = try await getMergedComposition()
-        let exportSession = AVAssetExportSessionEx (asset: asset, journey: self)
+        let exportSession = AVAssetExportSessionEx (asset: asset, journey: self, task: task)
         
         let width = asset.naturalSize.width
         let height = asset.naturalSize.height
@@ -163,6 +165,11 @@ class Journey {
             AVVideoWidthKey:width,
             AVVideoHeightKey:height
         ]
+        
+        if let timeRange {
+            exportSession.timeRange = timeRange
+        }
+        
         
         // Remove previpus file with the same name
         try? FileManager.default.removeItem(at: url)

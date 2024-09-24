@@ -7,137 +7,101 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D057AEFD-5325-465F-B4B6-E115303EA455"
-            shouldBeEnabled = "No"
+            uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Model/Contents.swift"
+            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "getJourneys()"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "export()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa01680337"
+                  uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D - 368a3b8b4ebb0802"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
+                  symbolName = "(1) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
+                  moduleName = "Dashcam Wrangler.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "712">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141">
                </Location>
                <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa01680337"
+                  uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D - e7a3d17f58ec87ed"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
+                  symbolName = "(19) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
+                  moduleName = "Dashcam Wrangler.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "744">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141">
                </Location>
                <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D - 911b8b7c4edfdfe5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
+                  symbolName = "(20) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
+                  moduleName = "Dashcam Wrangler.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "408">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141">
                </Location>
                <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D - 24e9ccc7bc5dd084"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
+                  symbolName = "(21) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
+                  moduleName = "Dashcam Wrangler.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "440">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141">
                </Location>
                <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D - cbf70649ebd3d5ab"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
+                  symbolName = "(22) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
+                  moduleName = "Dashcam Wrangler.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "412">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141">
                </Location>
                <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
+                  uuid = "8FEFCAE9-B3AC-4324-8A4D-D88219ECD59D - 9ec57fd3d951d64a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
+                  symbolName = "(23) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
+                  moduleName = "Dashcam Wrangler.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
+                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "444">
-               </Location>
-               <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "428">
-               </Location>
-               <Location
-                  uuid = "D057AEFD-5325-465F-B4B6-E115303EA455 - db0209aa016803b3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "460">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -145,482 +109,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "63420EF8-650D-42D7-9AFD-E8558F8F778D"
+            uuid = "1ED84F11-EADC-49E1-BBCE-1F2501140588"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "export()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "91951479-15DE-4083-9BF3-49DAE970F0A2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "export()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90B858E7-0EE2-4EB6-B790-E99F9125EDD4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Model/Contents.swift"
+            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
             endingLineNumber = "78"
-            landmarkName = "getJourneys()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EA132468-41D1-4344-BAA4-4D41C45670B1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Model/Contents.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "getJourneys()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EA132468-41D1-4344-BAA4-4D41C45670B1 - db0209aa01680337"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "648">
-               </Location>
-               <Location
-                  uuid = "EA132468-41D1-4344-BAA4-4D41C45670B1 - db0209aa01680337"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (inout Swift.Array&lt;DashcamWrangler.Journey&gt;, (video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)) -&gt; () in closure #1 (inout Swift.TaskGroup&lt;(video: DashcamWrangler.Video, duration: __C.CMTime, timestamp: Swift.Optional&lt;Swift.Double&gt;)&gt;) async -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt; in DashcamWrangler.Contents.getJourneys() async throws -&gt; Swift.Array&lt;DashcamWrangler.Journey&gt;"
-                  moduleName = "DashcamWrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/Contents.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "652">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1218E6DE-B771-4E08-89DC-F153D83389B9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/UI Controllers/VideoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "transportSegmentedControlClicked(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5CF652FC-B406-4059-860A-30FFA5199B57"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Views/JourneyTableCellView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "objectValue"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "5CF652FC-B406-4059-860A-30FFA5199B57 - 44a01edeaf5d49df"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneyTableCellView.objectValue.didset : Swift.Optional&lt;Any&gt;"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Views/JourneyTableCellView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "180">
-               </Location>
-               <Location
-                  uuid = "5CF652FC-B406-4059-860A-30FFA5199B57 - 44a01edeaf5d49df"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneyTableCellView.objectValue.didset : Swift.Optional&lt;Any&gt;"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Views/JourneyTableCellView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "196">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/UI Controllers/JourneysViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "deleteJourney(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525adc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82"
-                  offsetFromSymbolStart = "840">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525abf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "1996">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525abf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "1988">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525abf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "2196">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b12"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "2568">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b50"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "3288">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b96"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "3940">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b33"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "2192">
-               </Location>
-               <Location
-                  uuid = "9B80A099-2F00-4B4E-B445-309921AB04DA - 9715c8b90b525b33"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashcam_Wrangler.JourneysViewController.deleteJourney(Dashcam_Wrangler.Journey) -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/UI%20Controllers/JourneysViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "2208">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DC86CB89-982B-484B-9AB2-3A020007A83A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Extensions/UserDefaultsExtensions.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "outputURL"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "DC86CB89-982B-484B-9AB2-3A020007A83A - a44a5c4830dc79fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSUserDefaults.outputURL.getter : Swift.Optional&lt;Foundation.URL&gt;"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Extensions/UserDefaultsExtensions.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "288">
-               </Location>
-               <Location
-                  uuid = "DC86CB89-982B-484B-9AB2-3A020007A83A - a44a5c4830dc79fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSUserDefaults.outputURL.getter : Swift.Optional&lt;Foundation.URL&gt;"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Extensions/UserDefaultsExtensions.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "744">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "export()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - 5441c63a08182b1f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(9) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "1024">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - 69e90fd9c9b63732"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(10) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - 69e90fd9c9b7cf53"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(10) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - 1efbc85384343411"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(11) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - 1efbc8538435cc70"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(11) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - c38d82cd72ba3970"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(12) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - c38d82cd72bbc111"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(12) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "156">
-               </Location>
-               <Location
-                  uuid = "B7203C86-7816-401E-A5D3-EAC636EF100E - c38d82cd72bbc130"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(12) suspend resume partial function for Dashcam_Wrangler.AVAssetExportSessionEx.export() async -&gt; ()"
-                  moduleName = "Dashcam Wrangler"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/colinwilson/Documents/XCode%20Projects/DashcamWrangler/DashcamWrangler/Model/AVAssetExportSessionEx.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "112"
-                  endingLineNumber = "112"
-                  offsetFromSymbolStart = "196">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7D66F8C7-92F5-48DC-94A1-D2A0ACD1A5DB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
             landmarkName = "export()"
             landmarkType = "7">
          </BreakpointContent>
@@ -628,15 +157,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "76033302-60F9-41BB-9DB7-E37380AF7ED7"
+            uuid = "A5C12FFB-991E-4926-9207-63C050D64B6C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "export()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0725B1E3-2319-42F4-8BC6-231CBA736838"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "export()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CBE556A-D9CB-469F-9441-478E29A0A85A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashcamWrangler/Workers/AVAssetExportSessionEx.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "export()"
             landmarkType = "7">
          </BreakpointContent>
