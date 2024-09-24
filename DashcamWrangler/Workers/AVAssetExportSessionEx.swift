@@ -130,7 +130,7 @@ class AVAssetExportSessionEx : ProgressSource {
             let _ = await (video, audio) // Wait for video & audio to complete
             
             if reader.status == .failed {
-                print ("\(reader.error)")
+                print ("\(String(describing: reader.error))")
                 writer.cancelWriting ()
             } else if reader.status == .cancelled {
                 writer.cancelWriting()  // Cancel writer if reader failed or was cancelled - which deletes the output file
